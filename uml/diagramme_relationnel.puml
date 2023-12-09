@@ -6,6 +6,9 @@ skinparam linetype ortho
 entity Machine {
 * id: int
 ___
+idOperationEffectuee:int
+idPosteDeTravail:int
+idEtatMachine: int
 reference: varchar
 description: text
 puissance: double
@@ -21,7 +24,8 @@ description: text
 entity Produit {
 * id: int
 ___
-idGamme
+idGamme : int
+idExemplaire:int
 ___
 reference: varchar
 description: text
@@ -29,7 +33,7 @@ description: text
 
 entity Machine_TypeOperation {
 * idMachine: int
-* idTypeOperation
+* idTypeOperation : int
 ___
 duree: double
 }
@@ -49,7 +53,7 @@ Produit --> Gamme : plan de fabrication
 entity Operation {
 * id: int
 ___
-idTypeOperation
+idTypeOperation : int
 ___
 debutOperation: double
 finOperation: double
@@ -60,6 +64,7 @@ Operation --> Type0peration
 entity Gamme_Operation {
 *idOperation: int
 *idGamme: int
+idOperationEffectuee: int
 }
 
 Operation <-- Gamme_Operation
@@ -80,7 +85,7 @@ reference: varchar
 numeroDeSerie: varchar
 }
 
-Produit "1" -- "*" Exemplaire
+Produit <-- Exemplaire
 
 entity OperationEffectuee {
 * id: int
@@ -89,8 +94,8 @@ debutOperation: double
 finOperation: double
 }
 
-Operation "1" -- "*" OperationEffectuee
-OperationEffectuee "*" -- "1" Machine
+Operation <-- OperationEffectuee
+OperationEffectuee --> Machine
 
 entity PosteDeTravail {
 *id: int
@@ -103,13 +108,21 @@ positionY: int
 entity Operateur {
 * id: int
 ___
+idEtatOperateur: int
 nom: varchar
 prenom: varchar
 }
 
-Operateur "*" -- "*" PosteDeTravail: habilite a travailler sur
+entity Operateur_PosteDeTravail {
+*idOperateur: int
+*idPosteDeTravail: int
+idHabiliteATravaillerSur: int
+}
 
-PosteDeTravail "1" -- "*" Machine
+Operateur <--Operateur_PosteDeTravail
+PosteDeTravail <-- Operateur_PosteDeTravail
+
+PosteDeTravail <-- Machine
 
 entity EtatMachine {
 * id: int
@@ -117,14 +130,14 @@ ___
 nom: varchar
 }
 
-EtatMachine "1" -- "*" Machine
+EtatMachine <-- Machine
 
 entity EtatOperateur {
 * id: int
 nom: varchar
 }
 
-EtatOperateur "1" -- "*" Operateur
+EtatOperateur <-- Operateur
 
 
 @enduml
