@@ -1,0 +1,130 @@
+@startuml
+
+'Rectilinear layout :
+skinparam linetype ortho
+
+entity Machine {
+* id: int
+___
+reference: varchar
+description: text
+puissance: double
+coutHoraire: double
+}
+
+entity Type0peration{
+* id: int
+___
+description: text
+}
+
+entity Produit {
+* id: int
+___
+idGamme
+___
+reference: varchar
+description: text
+}
+
+entity Machine_TypeOperation {
+* idMachine: int
+* idTypeOperation
+___
+duree: double
+}
+
+Machine <-- Machine_TypeOperation
+Type0peration <-- Machine_TypeOperation
+
+entity Gamme {
+* id : int
+___
+reference: varchar
+description: text
+}
+
+Produit --> Gamme : plan de fabrication
+
+entity Operation {
+* id: int
+___
+idTypeOperation
+___
+debutOperation: double
+finOperation: double
+}
+
+Operation --> Type0peration
+
+entity Gamme_Operation {
+*idOperation: int
+*idGamme: int
+}
+
+Operation <-- Gamme_Operation
+Gamme <-- Gamme_Operation
+
+entity Operation_Ordre {
+*idOperationAmont: int
+*idOperationAval: int
+}
+
+Operation_Ordre --> Operation
+Operation_Ordre --> Operation
+
+entity Exemplaire {
+* id: int
+___
+reference: varchar
+numeroDeSerie: varchar
+}
+
+Produit "1" -- "*" Exemplaire
+
+entity OperationEffectuee {
+* id: int
+___
+debutOperation: double
+finOperation: double
+}
+
+Operation "1" -- "*" OperationEffectuee
+OperationEffectuee "*" -- "1" Machine
+
+entity PosteDeTravail {
+*id: int
+___
+description:text
+positionX: int
+positionY: int
+}
+
+entity Operateur {
+* id: int
+___
+nom: varchar
+prenom: varchar
+}
+
+Operateur "*" -- "*" PosteDeTravail: habilite a travailler sur
+
+PosteDeTravail "1" -- "*" Machine
+
+entity EtatMachine {
+* id: int
+___
+nom: varchar
+}
+
+EtatMachine "1" -- "*" Machine
+
+entity EtatOperateur {
+* id: int
+nom: varchar
+}
+
+EtatOperateur "1" -- "*" Operateur
+
+
+@enduml

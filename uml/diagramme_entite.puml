@@ -1,0 +1,110 @@
+@startuml
+
+'Rectilinear layout :
+skinparam linetype ortho
+
+entity Machine {
+* id: int
+___
+reference: varchar
+description: text
+puissance: double
+coutHoraire: double
+}
+
+entity Type0peration{
+* id: int
+___
+description: text
+}
+
+entity Produit {
+* id: int
+___
+reference: varchar
+description: text
+}
+
+entity Machine_TypeOperation {
+duree: double
+}
+
+Machine "1" -- "*" Machine_TypeOperation
+Type0peration "1" -- "*" Machine_TypeOperation
+
+entity Gamme {
+* id : int
+___
+reference: varchar
+description: text
+}
+
+Produit "*" -- "0.1" Gamme : plan de fabrication
+
+entity Operation {
+* id: int
+___
+debutOperation: double
+finOperation: double
+}
+
+Operation "*" -- "1" Type0peration
+Operation "*" -- "*" Gamme
+
+Operation "*" -- "*" Operation : precede
+
+entity Exemplaire {
+* id: int
+___
+reference: varchar
+numeroDeSerie: varchar
+}
+
+Produit "1" -- "*" Exemplaire
+
+entity OperationEffectuee {
+* id: int
+___
+debutOperation: double
+finOperation: double
+}
+
+Operation "1" -- "*" OperationEffectuee
+OperationEffectuee "*" -- "1" Machine
+
+entity PosteDeTravail {
+*id: int
+___
+description:text
+positionX: int
+positionY: int
+}
+
+entity Operateur {
+* id: int
+___
+nom: varchar
+prenom: varchar
+}
+
+Operateur "*" -- "*" PosteDeTravail: habilite a travailler sur
+
+PosteDeTravail "1" -- "*" Machine
+
+entity EtatMachine {
+* id: int
+___
+nom: varchar
+}
+
+EtatMachine "1" -- "*" Machine
+
+entity EtatOperateur {
+* id: int
+nom: varchar
+}
+
+EtatOperateur "1" -- "*" Operateur
+
+
+@enduml
