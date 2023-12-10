@@ -53,8 +53,6 @@ entity Operation {
 ___
 idTypeOperation : int
 ___
-debutOperation: double
-finOperation: double
 }
 
 Operation --> Type0peration
@@ -91,6 +89,7 @@ entity OperationEffectuee {
 ___
 idOperation: int
 idMachine: int
+idExemplaire: int
 ___
 debutOperation: double
 finOperation: double
@@ -98,6 +97,7 @@ finOperation: double
 
 Operation <-- OperationEffectuee
 OperationEffectuee --> Machine
+OperationEffectuee --> Exemplaire
 
 entity PosteDeTravail {
 *id: int

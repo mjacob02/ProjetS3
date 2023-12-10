@@ -43,9 +43,6 @@ Produit "*" -- "0.1" Gamme : plan de fabrication
 
 entity Operation {
 * id: int
-___
-debutOperation: double
-finOperation: double
 }
 
 Operation "*" -- "1" Type0peration
@@ -71,6 +68,7 @@ finOperation: double
 
 Operation "1" -- "*" OperationEffectuee
 OperationEffectuee "*" -- "1" Machine
+OperationEffectuee "*" -- "1" Exemplaire
 
 entity PosteDeTravail {
 *id: int
