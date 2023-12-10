@@ -6,7 +6,6 @@ skinparam linetype ortho
 entity Machine {
 * id: int
 ___
-idOperationEffectuee:int
 idPosteDeTravail:int
 idEtatMachine: int
 reference: varchar
@@ -25,7 +24,6 @@ entity Produit {
 * id: int
 ___
 idGamme : int
-idExemplaire:int
 ___
 reference: varchar
 description: text
@@ -64,7 +62,6 @@ Operation --> Type0peration
 entity Gamme_Operation {
 *idOperation: int
 *idGamme: int
-idOperationEffectuee: int
 }
 
 Operation <-- Gamme_Operation
@@ -81,6 +78,8 @@ Operation_Ordre --> Operation
 entity Exemplaire {
 * id: int
 ___
+idProduit: int
+___
 reference: varchar
 numeroDeSerie: varchar
 }
@@ -89,6 +88,9 @@ Produit <-- Exemplaire
 
 entity OperationEffectuee {
 * id: int
+___
+idOperation: int
+idMachine: int
 ___
 debutOperation: double
 finOperation: double
@@ -109,17 +111,25 @@ entity Operateur {
 * id: int
 ___
 idEtatOperateur: int
+___
 nom: varchar
 prenom: varchar
 }
 
-entity Operateur_PosteDeTravail {
+entity Operateur_PosteDeTravail_Habilitation {
 *idOperateur: int
 *idPosteDeTravail: int
-idHabiliteATravaillerSur: int
 }
 
-Operateur <--Operateur_PosteDeTravail
+entity Operateur_PosteDeTravail_Affectation {
+*idOperateur: int
+*idPosteDeTravail: int
+}
+
+Operateur <--Operateur_PosteDeTravail_Habilitation
+PosteDeTravail <-- Operateur_PosteDeTravail
+
+Operateur <--Operateur_PosteDeTravail_Affectation
 PosteDeTravail <-- Operateur_PosteDeTravail
 
 PosteDeTravail <-- Machine
