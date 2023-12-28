@@ -80,7 +80,7 @@ public class ExemplaireView extends VerticalLayout {
         grid.setSizeFull();
         grid.setColumns("produit", "numéro de série"); // Add columns to the grid
 //        grid.addColumn(produit -> produit.getGamme().getReference()).setHeader("Gamme");    // If not null, add a column with the gamme reference
-        grid.addColumn(exemplaire -> exemplaire.getProduit() != null ? exemplaire.getProduit().getReference() : "").setHeader("Produit");  // Add a column with the gamme reference (that can be null)
+        grid.addColumn(exemplaire -> exemplaire.getProduit() != null ? exemplaire.getProduit() : "").setHeader("Produit");  // Add a column with the gamme reference (that can be null)
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
         grid.asSingleSelect().addValueChangeListener(event ->

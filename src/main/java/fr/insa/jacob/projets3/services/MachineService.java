@@ -2,9 +2,7 @@ package fr.insa.jacob.projets3.services;
 
 import fr.insa.jacob.projets3.entity.Machine;
 import fr.insa.jacob.projets3.repository.MachineRepository;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
@@ -26,11 +24,18 @@ public class MachineService {
                 .orElseThrow(() -> new NoSuchElementException("Resource not found: " + id));
     }
 
-    public Machine findAll(String stringFilter) {
-        if (stringFilter == null || stringFilter.isEmpty()) {
-            return machineRepository.findAll();
+    public String findAll(String stringFilter) {
+        stringFilter
+        if ((stringFilter) == null || (stringFilter).isEmpty()) {
+            return String.valueOf((Machine) machineRepository.findAll());
         } else {
-            return machineRepository.(stringFilter);
+            return (stringFilter);
         }
+    }
+
+    public void delete(Machine machine) {
+    }
+
+    public void save(Machine machine) {
     }
 }

@@ -24,4 +24,7 @@ public class EtatMachineService {
         return etatMachineRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Resource not found: " + id));
     }
+
+    public Object listAll() {
+        return etatMachineRepository.findAll(); }
 }

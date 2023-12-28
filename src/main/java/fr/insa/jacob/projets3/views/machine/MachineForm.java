@@ -31,6 +31,10 @@ public class MachineForm extends FormLayout {
     // Other fields omitted
     Binder<Machine> binder = new BeanValidationBinder<>(Machine.class); // To validate the form
 
+    public MachineForm(Object o) {
+
+    }
+
    /*public MachineForm(List<> gammes) {
         addClassName("machine-form"); // To style the form with CSS
         binder.bindInstanceFields(this);  // To bind the fields of the form to the fields of the entity
@@ -116,4 +120,4 @@ public class MachineForm extends FormLayout {
         return addListener(CloseEvent.class, listener);
     }
 }
-}
+

@@ -58,6 +58,7 @@ public class Exemplaire implements Serializable {
         this.numeroDeSerie = numeroDeSerie;
     }
 
-    public Exemplaire getProduit() {
+    public Integer getProduit() {
+        return idProduit;
     }
 }
