@@ -25,7 +25,6 @@ public class MachineService {
     }
 
     public String findAll(String stringFilter) {
-        stringFilter
         if ((stringFilter) == null || (stringFilter).isEmpty()) {
             return String.valueOf((Machine) machineRepository.findAll());
         } else {
