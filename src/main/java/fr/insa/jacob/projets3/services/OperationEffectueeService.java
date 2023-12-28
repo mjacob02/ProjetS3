@@ -24,4 +24,7 @@ public class OperationEffectueeService {
         return operationEffectueeRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Resource not found: " + id));
     }
+
+    public void save(OperationEffectuee operationEffectuee) {
+    }
 }

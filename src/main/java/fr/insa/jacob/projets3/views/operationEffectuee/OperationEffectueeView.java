@@ -1,6 +1,8 @@
 package fr.insa.jacob.projets3.views.operationEffectuee;
 
+import fr.insa.jacob.projets3.entity.Exemplaire;
 import fr.insa.jacob.projets3.entity.OperationEffectuee;
+import fr.insa.jacob.projets3.services.ExemplaireService;
 import fr.insa.jacob.projets3.services.GammeService;
 import fr.insa.jacob.projets3.services.OperationEffectueeService;
 import fr.insa.jacob.projets3.services.ProduitService;
@@ -29,11 +31,12 @@ public class OperationEffectueeView extends VerticalLayout {
     TextField filterText = new TextField();
     OperationEffectueeForm form;
     OperationEffectueeService operationEffectueeService;
-    /* GammeService gammeService;*/
+    ExemplaireService exemplaireService;
 
-    public OperationEffectueeView(OperationEffectueeService service /*,GammeService gammeService*/) {
+
+    public OperationEffectueeView(OperationEffectueeService service ,ExemplaireServiceService exemplaireServiceService) {
         this.operationEffectueeService = service;
-        /*this.gammeService = gammeService;*/
+        this.exemplaireService = exemplaireService;
 
         addClassName("list-view");
         setSizeFull();
@@ -55,8 +58,8 @@ public class OperationEffectueeView extends VerticalLayout {
     }
 
     private void configureForm() {
-       /* form = new OperationEffectueeForm(gammeService.listAll()); // Instanciate the form with the list of gamme
-        form.setWidth("25em");*/
+        form = new OperationEffectueeForm(exemplaireService.listAll()); // Instanciate the form with the list of gamme
+        form.setWidth("25em");
         // Listen to the events fired by the form and handle them in this class :
         form.addSaveListener(this::saveOperationEffectuee);
         form.addDeleteListener(this::deleteOperationEffectuee);
@@ -124,7 +127,7 @@ public class OperationEffectueeView extends VerticalLayout {
 
 
     private void updateList() {
-        grid.setItems(exemplaireService.findAll(filterText.getValue()));
+        grid.setItems(ExemplaireService.findAll(filterText.getValue()));
     }
 }
 

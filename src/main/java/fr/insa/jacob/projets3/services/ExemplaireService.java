@@ -33,7 +33,4 @@ public class ExemplaireService {
 
     public void save(Exemplaire exemplaire) {
     }
-
-    public void delete(Exemplaire exemplaire) {
-    }
 }
