@@ -15,7 +15,7 @@ public class ExemplaireService {
     private ExemplaireRepository exemplaireRepository;
 
 
-    public void delete(Integer id) {
+    public void delete(Exemplaire id) {
         exemplaireRepository.deleteById(id);
     }
     private Exemplaire requireOne(Integer id) {
