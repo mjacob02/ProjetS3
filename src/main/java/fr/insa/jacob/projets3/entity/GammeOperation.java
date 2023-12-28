@@ -24,8 +24,8 @@ public class GammeOperation implements Serializable {
         return idOperation;
     }
 
-    public Integer getIdGamme() {
-        return idGamme;
+    public Gamme getGamme() {
+        return Gamme;
     }
 
     public void setIdOperation(Integer idOperation) {
