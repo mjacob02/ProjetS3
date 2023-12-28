@@ -1,0 +1,121 @@
+@startuml
+
+'Rectilinear layout :
+skinparam linetype ortho
+
+entity Machine {
+* id: int
+___
+idPosteDeTravail:int
+idEtatMachine: int
+reference: varchar
+description: text
+puissance: double
+coutHoraire: double
+}
+
+entity Type0peration{
+* id: int
+___
+description: text
+}
+
+entity Produit {
+* id: int
+___
+idGamme : int
+___
+reference: varchar
+description: text
+}
+
+Machine "1" -- "*" Type0peration
+
+
+entity Gamme {
+* id : int
+___
+reference: varchar
+description: text
+}
+
+Produit "*" -- "0.1" Gamme : plan de fabrication
+
+entity Operation {
+* id: int
+___
+idTypeOperation : int
+___
+}
+
+Operation "*" -- "1" Type0peration
+Operation "*" -- "*" Gamme
+
+Operation "*" -- "*" Operation : precede
+
+entity Exemplaire {
+* id: int
+___
+idProduit: int
+___
+reference: varchar
+numeroDeSerie: varchar
+}
+
+Produit "1" -- "*" Exemplaire
+
+entity OperationEffectuee {
+* id: int
+___
+idOperation: int
+idMachine: int
+idExemplaire: int
+___
+debutOperation: double
+finOperation: double
+}
+
+Operation "1" -- "*" OperationEffectuee
+OperationEffectuee "*" -- "1" Machine
+OperationEffectuee "*" -- "1" Exemplaire
+
+entity PosteDeTravail {
+*id: int
+___
+description:text
+positionX: int
+positionY: int
+}
+
+entity Operateur {
+* id: int
+___
+idEtatOperateur: int
+___
+nom: varchar
+prenom: varchar
+}
+
+Operateur "*" -- "*" PosteDeTravail: habilite a travailler sur
+Operateur "*" -- "*" PosteDeTravail: affecte a
+
+PosteDeTravail "1" -- "*" Machine
+
+entity EtatMachine {
+* id: int
+___
+nom: varchar
+}
+
+EtatMachine "1" -- "*" Machine
+
+entity EtatOperateur {
+* id: int
+nom: varchar
+}
+
+EtatOperateur "1" -- "*" Operateur
+
+
+
+@enduml

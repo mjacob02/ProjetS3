@@ -1,0 +1,17 @@
+{
+  "frontendFolder": "C:/Users/Elève/OneDrive - Conseil régional Grand Est - Numérique Educatif/Documents/prof info/ProjetS3/./frontend",
+  "themeFolder": "themes",
+  "themeResourceFolder": "C:/Users/Elève/OneDrive - Conseil régional Grand Est - Numérique Educatif/Documents/prof info/ProjetS3/./frontend/generated/jar-resources",
+  "staticOutput": "C:/Users/Elève/OneDrive - Conseil régional Grand Est - Numérique Educatif/Documents/prof info/ProjetS3/target/classes/META-INF/VAADIN/webapp/VAADIN/static",
+  "generatedFolder": "generated",
+  "statsOutput": "C:\\Users\\Elève\\OneDrive - Conseil régional Grand Est - Numérique Educatif\\Documents\\prof info\\ProjetS3\\target\\classes\\META-INF\\VAADIN\\config",
+  "frontendBundleOutput": "C:\\Users\\Elève\\OneDrive - Conseil régional Grand Est - Numérique Educatif\\Documents\\prof info\\ProjetS3\\target\\classes\\META-INF\\VAADIN\\webapp",
+  "devBundleOutput": "C:/Users/Elève/OneDrive - Conseil régional Grand Est - Numérique Educatif/Documents/prof info/ProjetS3/src/main/dev-bundle/webapp",
+  "devBundleStatsOutput": "C:/Users/Elève/OneDrive - Conseil régional Grand Est - Numérique Educatif/Documents/prof info/ProjetS3/src/main/dev-bundle/config",
+  "jarResourcesFolder": "C:/Users/Elève/OneDrive - Conseil régional Grand Est - Numérique Educatif/Documents/prof info/ProjetS3/./frontend/generated/jar-resources",
+  "themeName": "flowcrmtutorial",
+  "clientServiceWorkerSource": "C:\\Users\\Elève\\OneDrive - Conseil régional Grand Est - Numérique Educatif\\Documents\\prof info\\ProjetS3\\target\\sw.ts",
+  "pwaEnabled": false,
+  "offlineEnabled": false,
+  "offlinePath": "'offline.html'"
+}
