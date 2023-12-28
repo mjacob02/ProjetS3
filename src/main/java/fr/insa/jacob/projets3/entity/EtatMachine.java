@@ -21,5 +21,5 @@ public class EtatMachine implements Serializable {
     private String nom;
 
     /*test/*
-
+/testMarie/
 }
