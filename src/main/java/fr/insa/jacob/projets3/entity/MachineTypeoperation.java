@@ -23,4 +23,29 @@ public class MachineTypeoperation implements Serializable {
     @Column(name = "duree", nullable = false)
     private Double duree;
 
+    public Integer getIdMachine() {
+        return idMachine;
+    }
+
+    public Integer getIdTypeOperation() {
+        return idTypeOperation;
+    }
+
+    public Double getDuree() {
+        return duree;
+    }
+
+    public void setIdMachine(Integer idMachine) {
+        this.idMachine = idMachine;
+    }
+
+    public void setIdTypeOperation(Integer idTypeOperation) {
+        this.idTypeOperation = idTypeOperation;
+    }
+
+    public void setDuree(Double duree) {
+        this.duree = duree;
+    }
+
+
 }

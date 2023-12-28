@@ -35,4 +35,60 @@ public class Machine implements Serializable {
     @Column(name = "description", nullable = false)
     private String description;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public Integer getIdPosteDeTravail() {
+        return idPosteDeTravail;
+    }
+
+    public Integer getIdEtatMachine() {
+        return idEtatMachine;
+    }
+
+    public String getReference() {
+        return reference;
+    }
+
+    public Double getPuissance() {
+        return puissance;
+    }
+
+    public Double getCoutHoraire() {
+        return coutHoraire;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setIdPosteDeTravail(Integer idPosteDeTravail) {
+        this.idPosteDeTravail = idPosteDeTravail;
+    }
+
+    public void setIdEtatMachine(Integer idEtatMachine) {
+        this.idEtatMachine = idEtatMachine;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
+
+    public void setPuissance(Double puissance) {
+        this.puissance = puissance;
+    }
+
+    public void setCoutHoraire(Double coutHoraire) {
+        this.coutHoraire = coutHoraire;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 }

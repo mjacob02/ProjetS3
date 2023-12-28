@@ -57,4 +57,6 @@ public class Produit implements Serializable {
     public void setGamme(Gamme gamme) {
         this.gamme = gamme;
     }
+
+
 }

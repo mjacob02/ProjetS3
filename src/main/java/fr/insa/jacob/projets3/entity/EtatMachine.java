@@ -20,8 +20,19 @@ public class EtatMachine implements Serializable {
     @Column(name = "nom", nullable = false)
     private String nom;
 
-    /*test/*
-/testMarie/
-/testGhada/
-     */
+    public Integer getId() {
+        return id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 }

@@ -20,4 +20,19 @@ public class OperateurPostedetravailAffectation implements Serializable {
     @Column(name = "idPosteDeTravail", nullable = false)
     private Integer idPosteDeTravail;
 
+    public Integer getIdOperateur() {
+        return idOperateur;
+    }
+
+    public Integer getIdPosteDeTravail() {
+        return idPosteDeTravail;
+    }
+
+    public void setIdOperateur(Integer idOperateur) {
+        this.idOperateur = idOperateur;
+    }
+
+    public void setIdPosteDeTravail(Integer idPosteDeTravail) {
+        this.idPosteDeTravail = idPosteDeTravail;
+    }
 }

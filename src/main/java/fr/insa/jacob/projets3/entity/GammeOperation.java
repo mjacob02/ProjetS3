@@ -20,4 +20,19 @@ public class GammeOperation implements Serializable {
     @Column(name = "idGamme", nullable = false)
     private Integer idGamme;
 
+    public Integer getIdOperation() {
+        return idOperation;
+    }
+
+    public Integer getIdGamme() {
+        return idGamme;
+    }
+
+    public void setIdOperation(Integer idOperation) {
+        this.idOperation = idOperation;
+    }
+
+    public void setIdGamme(Integer idGamme) {
+        this.idGamme = idGamme;
+    }
 }

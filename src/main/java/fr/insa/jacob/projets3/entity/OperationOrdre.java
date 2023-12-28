@@ -22,4 +22,19 @@ public class OperationOrdre implements Serializable {
     @Column(name = "idOperationAval", nullable = false)
     private Integer idOperationAval;
 
+    public Integer getIdOperationAmont() {
+        return idOperationAmont;
+    }
+
+    public Integer getIdOperationAval() {
+        return idOperationAval;
+    }
+
+    public void setIdOperationAmont(Integer idOperationAmont) {
+        this.idOperationAmont = idOperationAmont;
+    }
+
+    public void setIdOperationAval(Integer idOperationAval) {
+        this.idOperationAval = idOperationAval;
+    }
 }
