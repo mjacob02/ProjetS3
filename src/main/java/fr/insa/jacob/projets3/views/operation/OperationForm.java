@@ -1,4 +1,4 @@
-package operation;
+package fr.insa.jacob.projets3.views.operation;
 
 import fr.insa.jacob.projets3.entity.Gamme;
 import fr.insa.jacob.projets3.entity.Operation;

@@ -1,4 +1,4 @@
-package operationEffectuee;
+package fr.insa.jacob.projets3.views.operationEffectuee;
 
 import fr.insa.jacob.projets3.entity.OperationEffectuee;
 import fr.insa.jacob.projets3.services.GammeService;
@@ -29,7 +29,7 @@ public class OperationEffectueeView extends VerticalLayout {
     TextField filterText = new TextField();
     OperationEffectueeForm form;
     OperationEffectueeService operationEffectueeService;
-   /* GammeService gammeService;*/
+    /* GammeService gammeService;*/
 
     public OperationEffectueeView(OperationEffectueeService service /*,GammeService gammeService*/) {
         this.operationEffectueeService = service;
@@ -127,3 +127,4 @@ public class OperationEffectueeView extends VerticalLayout {
         grid.setItems(exemplaireService.findAll(filterText.getValue()));
     }
 }
+

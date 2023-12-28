@@ -1,4 +1,4 @@
-package operationEffectuee;
+package fr.insa.jacob.projets3.views.operationEffectuee;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEvent;
