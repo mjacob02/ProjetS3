@@ -1,7 +1,5 @@
-package fr.insa.jacob.projets3.views.produit;
+package fr.insa.jacob.projets3.views.machine;
 
-import fr.insa.jacob.projets3.entity.Gamme;
-import fr.insa.jacob.projets3.entity.Produit;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.ComponentEventListener;
@@ -15,22 +13,26 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.shared.Registration;
+import fr.insa.jacob.projets3.entity.Gamme;
+import fr.insa.jacob.projets3.entity.Machine;
+import fr.insa.jacob.projets3.entity.Produit;
+import fr.insa.jacob.projets3.views.produit.ProduitForm;
 
 import java.util.List;
 
-public class ProduitForm extends FormLayout {
-    TextField reference = new TextField("Référence");
-    TextField description = new TextField("Description");
-
-    ComboBox<Gamme> gamme = new ComboBox<>("Gamme");
+public class MachineForm extends FormLayout {
+    TextField referencedelamachine = new TextField("Référence de la machine");
+    TextField descriptiondelamachine = new TextField("Description de la machine");
+    TextField puissancedelamachine= new TextField("Puissance de la machine");
+    TextField couthorraire= new TextField("Cout Horraire");
     Button save = new Button("Save");
     Button delete = new Button("Delete");
     Button close = new Button("Cancel");
     // Other fields omitted
-    Binder<Produit> binder = new BeanValidationBinder<>(Produit.class); // To validate the form
+    Binder<Machine> binder = new BeanValidationBinder<>(Machine.class); // To validate the form
 
-    public ProduitForm(List<Gamme> gammes) {
-        addClassName("produit-form"); // To style the form with CSS
+   /*public MachineForm(List<> gammes) {
+        addClassName("machine-form"); // To style the form with CSS
         binder.bindInstanceFields(this);  // To bind the fields of the form to the fields of the entity
 
         gamme.setItems(gammes);
@@ -40,7 +42,7 @@ public class ProduitForm extends FormLayout {
                 description,
                 gamme,
                 createButtonsLayout()); // To display the fields in the form
-    }
+    }*/
 
     private Component createButtonsLayout() {
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
@@ -51,8 +53,8 @@ public class ProduitForm extends FormLayout {
         close.addClickShortcut(Key.ESCAPE);
 
         save.addClickListener(event -> validateAndSave());
-        delete.addClickListener(event -> fireEvent(new DeleteEvent(this, binder.getBean())));
-        close.addClickListener(event -> fireEvent(new CloseEvent(this)));
+        delete.addClickListener(event -> fireEvent(new MachineForm.DeleteEvent(this, binder.getBean())));
+        close.addClickListener(event -> fireEvent(new MachineForm.CloseEvent(this)));
 
         binder.addStatusChangeListener(e -> save.setEnabled(binder.isValid()));
         return new HorizontalLayout(save, delete, close);
@@ -60,44 +62,44 @@ public class ProduitForm extends FormLayout {
 
     private void validateAndSave() {
         if (binder.isValid()) {
-            fireEvent(new SaveEvent(this, binder.getBean()));
+            fireEvent(new MachineForm.SaveEvent(this, binder.getBean()));
         }
     }
 
 
-    public void setProduit(Produit produit) {
-        binder.setBean(produit);    // To fill the form with the data of the selected entity
+    public void setMachine(Machine machine) {
+        binder.setBean(machine);    // To fill the form with the data of the selected entity
     }
 
     // Events
-    public static abstract class ProduitFormEvent extends ComponentEvent<ProduitForm> {
-        private Produit produit;
+    public static abstract class MachineFormEvent extends ComponentEvent<MachineForm> {
+        private Machine machine;
 
-        protected ProduitFormEvent(ProduitForm source, Produit produit) {
+        protected MachineFormEvent(MachineForm source, Machine machine) {
             super(source, false);
-            this.produit = produit;
+            this.machine = machine;
         }
 
-        public Produit getProduit() {
-            return produit;
-        }
-    }
-
-    public static class SaveEvent extends ProduitFormEvent {
-        SaveEvent(ProduitForm source, Produit produit) {
-            super(source, produit);
+        public Machine getMachine() {
+            return machine;
         }
     }
 
-    public static class DeleteEvent extends ProduitFormEvent {
-        DeleteEvent(ProduitForm source, Produit produit) {
-            super(source, produit);
+    public static class SaveEvent extends MachineFormEvent {
+        SaveEvent(MachineForm source, Machine machine) {
+            super(source, machine);
+        }
+    }
+
+    public static class DeleteEvent extends MachineFormEvent {
+        DeleteEvent(MachineForm source, Machine machine) {
+            super(source, machine);
         }
 
     }
 
-    public static class CloseEvent extends ProduitFormEvent {
-        CloseEvent(ProduitForm source) {
+    public static class CloseEvent extends MachineFormEvent {
+        CloseEvent(MachineForm source) {
             super(source, null);
         }
     }
@@ -114,4 +116,4 @@ public class ProduitForm extends FormLayout {
         return addListener(CloseEvent.class, listener);
     }
 }
-
+}
