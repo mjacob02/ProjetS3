@@ -22,4 +22,6 @@ public class EtatMachine implements Serializable {
 
     /*test/*
 /testMarie/
+/testGhada/
+     */
 }
