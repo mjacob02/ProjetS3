@@ -32,4 +32,30 @@ public class OperationEffectuee implements Serializable {
     @Column(name = "finOperation", nullable = false)
     private Double finOperation;
 
+    //getter
+    public Integer getId() { return id;    }
+    public void setId(Integer id) { this.id = id;    }
+
+    public Integer getOperation() { return Operation;    }
+    public void setOperation(Integer Operation) { this.Operation = Operation; }
+    public Integer getMachine() { return Machine;    }
+    public void setMachine(Integer Machine) { this.Machine = Machine;    }
+    public Integer getExemplaire() { return Exemplaire;    }
+    public void setExemplaire(Integer Exemplaire) { this.Exemplaire = Exemplaire; }
+
+    public Double getDebutOperation() { return debutOperation;    }
+    public void setDebutOperation(Double debutOperation) { this.debutOperation = debutOperation;  }
+    public Double getFinOperation() { return finOperation;   }
+    public void setFinOperation(Double finOperation) { this.finOperation = finOperation; }
+
+
+
+
+
+
+
+
+
+
+
 }
