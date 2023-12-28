@@ -26,4 +26,35 @@ public class PosteDeTravail implements Serializable {
     @Column(name = "description", nullable = false)
     private String description;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public Integer getPositionX() {
+        return positionX;
+    }
+
+    public Integer getPositionY() {
+        return positionY;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setPositionX(Integer positionX) {
+        this.positionX = positionX;
+    }
+
+    public void setPositionY(Integer positionY) {
+        this.positionY = positionY;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

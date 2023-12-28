@@ -35,4 +35,10 @@ public class GammeService {
     public List<Gamme> listAll() {
         return gammeRepository.findAll();
     }
+
+    public void delete(Gamme gamme) {
+    }
+
+    public Gamme findAll(String value) {
+    }
 }

@@ -20,4 +20,19 @@ public class Operation implements Serializable {
     @Column(name = "idTypeOperation", nullable = false)
     private Integer idTypeOperation;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public Integer getIdTypeOperation() {
+        return idTypeOperation;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setIdTypeOperation(Integer idTypeOperation) {
+        this.idTypeOperation = idTypeOperation;
+    }
 }

@@ -26,4 +26,35 @@ public class Exemplaire implements Serializable {
     @Column(name = "numeroDeSerie", nullable = false)
     private Integer numeroDeSerie;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public Integer getIdProduit() {
+        return idProduit;
+    }
+
+    public String getReference() {
+        return reference;
+    }
+
+    public Integer getNumeroDeSerie() {
+        return numeroDeSerie;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setIdProduit(Integer idProduit) {
+        this.idProduit = idProduit;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
+
+    public void setNumeroDeSerie(Integer numeroDeSerie) {
+        this.numeroDeSerie = numeroDeSerie;
+    }
 }
