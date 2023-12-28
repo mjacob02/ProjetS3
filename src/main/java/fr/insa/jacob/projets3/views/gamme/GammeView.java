@@ -1,7 +1,7 @@
 package fr.insa.jacob.projets3.views.gamme;
 
 import fr.insa.jacob.projets3.entity.Gamme;
-import fr.insa.jacob.projets3.services.GammeService;
+import fr.insa.jacob.projets3.services.GammeOperationService;
 import fr.insa.jacob.projets3.services.GammeService;
 import fr.insa.jacob.projets3.views.MainLayout;
 import com.vaadin.flow.component.Component;
@@ -14,7 +14,6 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.spring.annotation.SpringComponent;
-import fr.insa.jacob.projets3.views.gamme.GammeForm;
 import jakarta.annotation.security.PermitAll;
 import org.springframework.context.annotation.Scope;
 
@@ -30,7 +29,7 @@ public class GammeView extends VerticalLayout {
     GammeService gammeService;
     GammeOperationService gammeOperationService;//pas sûr
 
-    public GammeOperationView(GammeService service, GammeOperationService gammeOperationService) {//pas sur
+    public GammeView(GammeService service, GammeOperationService gammeOperationService) {//pas sur
         this.gammeService = service;//pas sur
         this.gammeOperationService = gammeOperationService;//pas sur
 
@@ -83,7 +82,7 @@ public class GammeView extends VerticalLayout {
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
         grid.asSingleSelect().addValueChangeListener(event ->
-                editProduit(event.getValue()));
+                editGamme(event.getValue()));
     }
 
     private Component getToolbar() {

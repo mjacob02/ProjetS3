@@ -15,6 +15,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.shared.Registration;
+import fr.insa.jacob.projets3.entity.Operation;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class GammeForm extends FormLayout {
     TextField reference = new TextField("Référence");
     TextField description = new TextField("Description");
 
-    ComboBox<Operations> operations = new ComboBox<>("Sélectionner les opérations de la gamme");
+    ComboBox<Operation> operation = new ComboBox<>("Sélectionner les opérations de la gamme");
 
     Button save = new Button("Save");
     Button delete = new Button("Delete");

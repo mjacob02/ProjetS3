@@ -46,4 +46,6 @@ public class Gamme implements Serializable {
     }
 
 
+    public Gamme getGammeOperation() {
+    }
 }
