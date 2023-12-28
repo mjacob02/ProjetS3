@@ -20,4 +20,6 @@ public class EtatMachine implements Serializable {
     @Column(name = "nom", nullable = false)
     private String nom;
 
+    /*test/*
+
 }
