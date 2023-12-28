@@ -1,6 +1,7 @@
 package fr.insa.jacob.projets3.services;
 
 import fr.insa.jacob.projets3.entity.Gamme;
+import fr.insa.jacob.projets3.entity.Produit;
 import fr.insa.jacob.projets3.repository.GammeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,11 @@ public class GammeService {
     public void delete(Gamme gamme) {
     }
 
-    public Gamme findAll(String value) {
+    public List<Gamme> findAll(String stringFilter) {
+        if (stringFilter == null || stringFilter.isEmpty()) {
+            return gammeRepository.findAll();
+        } else {
+            return gammeRepository.search(stringFilter);
+        }
     }
 }
