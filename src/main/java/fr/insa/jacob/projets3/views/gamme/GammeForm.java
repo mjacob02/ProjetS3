@@ -54,7 +54,7 @@ public class GammeForm extends FormLayout {
 
         save.addClickListener(event -> validateAndSave());
         delete.addClickListener(event -> fireEvent(new fr.insa.jacob.projets3.views.produit.GammeForm.DeleteEvent(this, binder.getBean())));
-        close.addClickListener(event -> fireEvent(new fr.insa.jacob.projets3.views.produit.GammeForm.CloseEvent(this)));
+        close.addClickListener(event -> fireEvent(new CloseEvent(this)));
 
         binder.addStatusChangeListener(e -> save.setEnabled(binder.isValid()));
         return new HorizontalLayout(save, delete, close);
@@ -114,6 +114,12 @@ public class GammeForm extends FormLayout {
 
     public Registration addCloseListener(ComponentEventListener<fr.insa.jacob.projets3.views.gamme.GammeForm.CloseEvent> listener) {
         return addListener(fr.insa.jacob.projets3.views.gamme.GammeForm.CloseEvent.class, listener);
+    }
+
+    private class CloseEvent extends ComponentEvent<?> {
+        public CloseEvent(GammeForm gammeForm) {
+            super();
+        }
     }
 }
 

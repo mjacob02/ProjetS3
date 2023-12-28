@@ -1,8 +1,11 @@
 package fr.insa.jacob.projets3.views.operation;
 
 import fr.insa.jacob.projets3.entity.Operation;
+import fr.insa.jacob.projets3.entity.TypeOperation;
 import fr.insa.jacob.projets3.services.GammeService;
+import fr.insa.jacob.projets3.services.OperationService;
 import fr.insa.jacob.projets3.services.ProduitService;
+import fr.insa.jacob.projets3.services.TypeOperationService;
 import fr.insa.jacob.projets3.views.MainLayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
@@ -28,11 +31,11 @@ public class OperationView extends VerticalLayout {
     TextField filterText = new TextField();
     ProduitForm form;
     OperationService OperationService;
-   /*GammeService gammeService;*/
+    TypeOperationService typeOperationService;
 
-    public OperationView(OperationService service/*, GammeService gammeService*/) {
+    public OperationView(OperationService service, TypeOperationService typeOperationService ) {
         this.OperationService = service;
-        /*this.gammeService = gammeService;*/
+        this.typeOperationService = typeOperationService;
 
         addClassName("list-view");
         setSizeFull();
@@ -54,22 +57,26 @@ public class OperationView extends VerticalLayout {
     }
 
     private void configureForm() {
-       /* form = new ProduitForm(gammeService.listAll()); // Instanciate the form with the list of gamme
-        form.setWidth("25em");*/
+        form = new ProduitForm(typeOperationService.listAll()); // Instanciate the form with the list of typeOperation
+        form.setWidth("25em");
         // Listen to the events fired by the form and handle them in this class :
         form.addSaveListener(this::saveOperation);
         form.addDeleteListener(this::deleteOperation);
         form.addCloseListener(e -> closeEditor());
     }
 
+    private void saveOperation(ProduitForm.SaveEvent saveEvent) {
+
+    }
+
     private void saveOperation(OperationForm.SaveEvent event) {
-        operationService.save(event.getOperation());
+        OperationService.save(event.getOperation());
         updateList();
         closeEditor();
     }
 
-    private void deleteProduit(ProduitForm.DeleteEvent event) {
-        operationService.delete(event.getOperation());
+    private void deleteOperation(ProduitForm.DeleteEvent event) {
+        OperationService.delete(event.getOperation());
         updateList();
         closeEditor();
     }
@@ -79,11 +86,14 @@ public class OperationView extends VerticalLayout {
         grid.setSizeFull();
         grid.setColumns("typeOperation", "operation","description","operationAmont","operationAval"); // Add columns to the grid
 //        grid.addColumn(produit -> produit.getGamme().getReference()).setHeader("Gamme");    // If not null, add a column with the gamme reference
-       /* grid.addColumn(produit -> produit.getGamme() != null ? produit.getGamme().getReference() : "").setHeader("Gamme");  // Add a column with the gamme reference (that can be null)
+        grid.addColumn(operation -> operation.getTypeOperation() != null ? operation.getTypeOperation().getDescription() : "").setHeader("Gamme");  // Add a column with the gamme reference (that can be null)
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
         grid.asSingleSelect().addValueChangeListener(event ->
-                editProduit(event.getValue()));*/
+                editProduit(event.getValue()));
+    }
+
+    private void editProduit(Operation value) {
     }
 
     private Component getToolbar() {
@@ -95,9 +105,14 @@ public class OperationView extends VerticalLayout {
         Button addProduitButton = new Button("Add typeOperation");
         addProduitButton.addClickListener(click -> addProduit());
 
+        Component addTypeOperationButton;
         var toolbar = new HorizontalLayout(filterText, addTypeOperationButton);
         toolbar.addClassName("toolbar");
         return toolbar;
+    }
+
+    private void addProduit() {
+
     }
 
     public void editTypeOperation(TypeOperation typeOperation) {

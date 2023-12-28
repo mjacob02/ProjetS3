@@ -33,4 +33,7 @@ public class ExemplaireService {
 
     public void save(Exemplaire exemplaire) {
     }
+
+    public Object listAll() {
+    }
 }
