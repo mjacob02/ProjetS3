@@ -36,11 +36,11 @@ public class OperationEffectuee implements Serializable {
     public Integer getId() { return id;    }
     public void setId(Integer id) { this.id = id;    }
 
-    public Integer getOperation() { return Operation;    }
+    public Operation getOperation() { return Operation;    }
     public void setOperation(Integer Operation) { this.Operation = Operation; }
-    public Integer getMachine() { return Machine;    }
+    public Machine getMachine() { return Machine;    }
     public void setMachine(Integer Machine) { this.Machine = Machine;    }
-    public Integer getExemplaire() { return Exemplaire;    }
+    public Exemplaire getExemplaire() { return Exemplaire;    }
     public void setExemplaire(Integer Exemplaire) { this.Exemplaire = Exemplaire; }
 
     public Double getDebutOperation() { return debutOperation;    }
