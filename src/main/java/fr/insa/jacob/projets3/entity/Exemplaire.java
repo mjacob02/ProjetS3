@@ -57,4 +57,7 @@ public class Exemplaire implements Serializable {
     public void setNumeroDeSerie(Integer numeroDeSerie) {
         this.numeroDeSerie = numeroDeSerie;
     }
+
+    public Exemplaire getProduit() {
+    }
 }

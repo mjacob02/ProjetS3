@@ -16,20 +16,24 @@ import com.vaadin.flow.shared.Registration;
 import fr.insa.jacob.projets3.entity.Exemplaire;
 import fr.insa.jacob.projets3.entity.Gamme;
 import fr.insa.jacob.projets3.entity.Exemplaire;
+import fr.insa.jacob.projets3.entity.Produit;
 import fr.insa.jacob.projets3.views.exemplaire.ExemplaireForm;
 
 import java.util.List;
 
 public class ExemplaireForm extends FormLayout {
     TextField produit = new TextField("Produit");
-    TextField numerodeserie = new TextField("Numéro de série");
+    TextField numeroDeSerie = new TextField("Numéro de série");
     Button operationseffectueespourlexemplaire = new Button("Opérations effectuées pour l'exemplaire");
     Button save = new Button("Save");
     Button delete = new Button("Delete");
     Button close = new Button("Cancel");
     // Other fields omitted
-    Binder<Exemplaire> binder = new BeanValidationBinder<>(Exemplaire.class); // To validate the form 
-    
+    Binder<Exemplaire> binder = new BeanValidationBinder<>(Exemplaire.class); // To validate the form
+
+    public ExemplaireForm(List<Produit> produits) {
+    }
+
 
     private Component createButtonsLayout() {
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);

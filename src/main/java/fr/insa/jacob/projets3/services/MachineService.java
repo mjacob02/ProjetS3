@@ -25,4 +25,12 @@ public class MachineService {
         return machineRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Resource not found: " + id));
     }
+
+    public Machine findAll(String stringFilter) {
+        if (stringFilter == null || stringFilter.isEmpty()) {
+            return machineRepository.findAll();
+        } else {
+            return machineRepository.(stringFilter);
+        }
+    }
 }
