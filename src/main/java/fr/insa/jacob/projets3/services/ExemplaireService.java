@@ -15,15 +15,15 @@ public class ExemplaireService {
     private ExemplaireRepository exemplaireRepository;
 
 
-    public void delete(Exemplaire id) {
-        exemplaireRepository.deleteById(id);
+    public void delete(Exemplaire exemplaire) {
+        exemplaireRepository.delete(exemplaire);
     }
     private Exemplaire requireOne(Integer id) {
         return exemplaireRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Resource not found: " + id));
     }
 
-    public List<Exemplaire> findAll(String stringFilter ) {
+    public List<Exemplaire> findAll(String stringFilter) {
         if (stringFilter == null || stringFilter.isEmpty()) {
             return exemplaireRepository.findAll();
         } else {
