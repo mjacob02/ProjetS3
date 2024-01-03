@@ -17,14 +17,17 @@ public class OperationEffectuee implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "idOperation", nullable = false)
-    private Integer idOperation;
+    @ManyToOne
+    @JoinColumn(name = "idOperation")
+    private Operation operation;
 
-    @Column(name = "idMachine", nullable = false)
-    private Integer idMachine;
+    @ManyToOne
+    @JoinColumn(name = "idMachine")
+    private Machine machine;
 
-    @Column(name = "idExemplaire", nullable = false)
-    private Integer idExemplaire;
+    @ManyToOne
+    @JoinColumn(name = "idExemplaire")
+    private Exemplaire exemplaire;
 
     @Column(name = "debutOperation", nullable = false)
     private Double debutOperation;
@@ -36,12 +39,13 @@ public class OperationEffectuee implements Serializable {
     public Integer getId() { return id;    }
     public void setId(Integer id) { this.id = id;    }
 
-    public Operation getOperation() { return Operation;    }
-    public void setOperation(Integer Operation) { this.Operation = Operation; }
-    public Machine getMachine() { return Machine;    }
-    public void setMachine(Integer Machine) { this.Machine = Machine;    }
-    public Exemplaire getExemplaire() { return Exemplaire;    }
-    public void setExemplaire(Integer Exemplaire) { this.Exemplaire = Exemplaire; }
+    public Operation getOperation() { return operation;    }
+    public void setOperation(Operation operation) { this.operation = operation; }
+
+    public Machine getMachine() { return machine;    }
+    public void setMachine(Machine machine) { this.machine = machine;    }
+    public Exemplaire getExemplaire() { return exemplaire;    }
+    public void setExemplaire(Exemplaire exemplaire) { this.exemplaire = exemplaire; }
 
     public Double getDebutOperation() { return debutOperation;    }
     public void setDebutOperation(Double debutOperation) { this.debutOperation = debutOperation;  }

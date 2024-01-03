@@ -1,6 +1,7 @@
 package fr.insa.jacob.projets3.services;
 
 import fr.insa.jacob.projets3.entity.Exemplaire;
+import fr.insa.jacob.projets3.entity.Produit;
 import fr.insa.jacob.projets3.repository.ExemplaireRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,13 @@ public class ExemplaireService {
                 .orElseThrow(() -> new NoSuchElementException("Resource not found: " + id));
     }
 
+    /***
+     * List all Exemplaire
+     */
+    public List<Exemplaire> listAll() {
+        return exemplaireRepository.findAll();
+    }
+
     public List<Exemplaire> findAll(String stringFilter) {
         if (stringFilter == null || stringFilter.isEmpty()) {
             return exemplaireRepository.findAll();
@@ -30,7 +38,12 @@ public class ExemplaireService {
             return exemplaireRepository.search(stringFilter);
         }
     }
-
-    public void save(Exemplaire exemplaire) {
+    public Exemplaire save(Exemplaire exemplaire) {
+        if (exemplaire == null) {
+            System.err.println("Exemplaire is null. Are you sure you have connected your form to the application?");
+            return null;
+        }
+        return exemplaireRepository.save(exemplaire);
     }
+
 }

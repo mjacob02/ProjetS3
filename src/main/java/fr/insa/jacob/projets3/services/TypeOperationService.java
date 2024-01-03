@@ -28,7 +28,8 @@ public class TypeOperationService {
                 .orElseThrow(() -> new NoSuchElementException("Resource not found: " + id));
     }
 
-    public List<Gamme> listAll() {
+    public List<TypeOperation> listAll() {
+        return typeOperationRepository.findAll();
     }
 
     public Operation findAll(String value) {

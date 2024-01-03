@@ -1,5 +1,5 @@
 package fr.insa.jacob.projets3.views.operationEffectuee;
-
+/*
 import fr.insa.jacob.projets3.entity.Exemplaire;
 import fr.insa.jacob.projets3.entity.OperationEffectuee;
 import fr.insa.jacob.projets3.services.ExemplaireService;
@@ -87,7 +87,7 @@ public class OperationEffectueeView extends VerticalLayout {
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
         grid.asSingleSelect().addValueChangeListener(event ->
-                editProduit(event.getValue()));*/
+                editProduit(event.getValue()));
     }
 
     private Component getToolbar() {
@@ -129,5 +129,59 @@ public class OperationEffectueeView extends VerticalLayout {
     private void updateList() {
         grid.setItems(ExemplaireService.findAll(filterText.getValue()));
     }
+*/
+
+
+    /*test avec video vaadin*/
+package com.example.application.views.list;
+
+import com.example.application.data.Contact;
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.value.ValueChangeMode;
+import com.vaadin.flow.router.PageTitle;
+import com.vaadin.flow.router.Route;
+
+    @Route(value = "")
+    @PageTitle("vue operation effectuee")
+    public class ListView extends VerticalLayout {
+        Grid<OperationEffectuee> grid = new Grid<>(OperationEffectuee.class);
+        TextField filterText = new TextField();
+
+        public ListView() {
+            addClassName("list-view");
+            setSizeFull();
+            configureGrid();
+
+            add(getToolbar(), grid);
+        }
+
+        private void configureGrid() {
+            grid.addClassNames("OperationEffectuee-grid");
+            grid.setSizeFull();
+            grid.setColumns("Exemplaire", "Operation", "Machine", "Debut Operation", "Fin Operation");
+            /*Est ce qu'on en a besoin ?*//*
+            grid.addColumn(contact -> contact.getStatus().getName()).setHeader("Status");
+            grid.addColumn(contact -> contact.getCompany().getName()).setHeader("Company");
+            grid.getColumns().forEach(col -> col.setAutoWidth(true));*/
+        }
+
+        private HorizontalLayout getToolbar() {
+            filterText.setPlaceholder("Filter by name...");
+            filterText.setClearButtonVisible(true);
+            filterText.setValueChangeMode(ValueChangeMode.LAZY);
+
+            Button addExemplaireButton = new Button("Ajouter un Exemplaire");
+
+            var toolbar = new HorizontalLayout(filterText, addExemplaireButton);
+            toolbar.addClassName("toolbar");
+            return toolbar;
+        }
+    }
 }
+
 

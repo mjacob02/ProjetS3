@@ -1,10 +1,12 @@
 package fr.insa.jacob.projets3.services;
 
 import fr.insa.jacob.projets3.entity.Machine;
+import fr.insa.jacob.projets3.entity.Produit;
 import fr.insa.jacob.projets3.repository.MachineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -24,17 +26,19 @@ public class MachineService {
                 .orElseThrow(() -> new NoSuchElementException("Resource not found: " + id));
     }
 
-    public String findAll(String stringFilter) {
+    public List<Machine> findAll(String stringFilter) {
         if ((stringFilter) == null || (stringFilter).isEmpty()) {
-            return String.valueOf((Machine) machineRepository.findAll());
+            return machineRepository.findAll();
         } else {
-            return (stringFilter);
+            return machineRepository.search(stringFilter);
         }
     }
 
     public void delete(Machine machine) {
+        // TODO : take code from ProduitService
     }
 
     public void save(Machine machine) {
+        // TODO : take code from ProduitService
     }
 }

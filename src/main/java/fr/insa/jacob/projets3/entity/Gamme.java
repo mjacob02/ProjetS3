@@ -45,7 +45,7 @@ public class Gamme implements Serializable {
         this.description = description;
     }
 
-
-    public Gamme getGammeOperation() {
-    }
+// TODO : handle many-tomany : https://www.baeldung.com/jpa-many-to-many
+//    public Gamme getGammeOperation() {
+//    }
 }
