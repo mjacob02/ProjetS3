@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 
 import java.io.Serializable;
+import java.util.Set;
 
 
 @Entity
@@ -28,11 +29,15 @@ public class Operation implements Serializable {
         return idTypeOperation;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public void setId(Integer id) { this.id = id; }
 
     public void setIdTypeOperation(Integer idTypeOperation) {
         this.idTypeOperation = idTypeOperation;
     }
+
+
+    @ManyToMany(mappedBy = "GammeOperation")
+    Set<Gamme> gammeOperation;
+
 }
+

@@ -27,11 +27,10 @@ public class GammeView extends VerticalLayout {
     TextField filterText = new TextField();
     GammeForm form;
     GammeService gammeService;
-    GammeOperationService gammeOperationService;//pas sûr
+    // GammeOperationService gammeOperationService;
 
-    public GammeView(GammeService service, GammeOperationService gammeOperationService) {//pas sur
-        this.gammeService = service;//pas sur
-        this.gammeOperationService = gammeOperationService;//pas sur
+    public GammeView(GammeService service) {
+        this.gammeService = service;
 
         addClassName("list-view");
         setSizeFull();
@@ -52,8 +51,8 @@ public class GammeView extends VerticalLayout {
         return content;
     }
 
-    private void configureForm() {//pas sur
-        form = new GammeForm(gammeOperationService.listAll()); // Instanciate the form with the list of gamme
+    private void configureForm() {
+      //  form = new GammeForm(gammeOperationService.listAll());
         form.setWidth("25em");
         // Listen to the events fired by the form and handle them in this class :
         form.addSaveListener(this::saveGamme);
@@ -78,7 +77,7 @@ public class GammeView extends VerticalLayout {
         grid.setSizeFull();
         grid.setColumns("reference", "description"); // Add columns to the grid
 //        grid.addColumn(gamme -> gamme.getGammeOperation().getReference()).setHeader("GammeOperation");    // If not null, add a column with the gammeOperation reference
-        grid.addColumn(gamme -> gamme.getGammeOperation() != null ? gamme.getGammeOperation().getReference() : "").setHeader("GammeOperation");  // Add a column with the gammeoperation reference (that can be null)
+//       grid.addColumn(gamme -> gamme.getGammeOperation() != null ? gamme.getGammeOperation().getReference() : "").setHeader("GammeOperation");  // Add a column with the gammeoperation reference (that can be null)
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
         grid.asSingleSelect().addValueChangeListener(event ->
