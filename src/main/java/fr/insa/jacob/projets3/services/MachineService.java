@@ -34,11 +34,22 @@ public class MachineService {
         }
     }
 
+    /***
+     * Delete Machine
+     */
     public void delete(Machine machine) {
-        // TODO : take code from ProduitService
+        machineRepository.delete(machine);
     }
 
-    public void save(Machine machine) {
-        // TODO : take code from ProduitService
+    /***
+     * Save Machine
+     */
+    public Machine save(Machine machine) {
+        if (machine == null) {
+            System.err.println("Machine is null. Are you sure you have connected your form to the application?");
+            return null;
+        }
+        return machineRepository.save(machine);
     }
+
 }

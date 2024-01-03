@@ -17,22 +17,21 @@ public class Operation implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "idTypeOperation", nullable = false)
-    private Integer idTypeOperation;
+    @ManyToOne
+    @JoinColumn(name = "idTypeOperation")
+    private TypeOperation typeOperation;
+
 
     public Integer getId() {
         return id;
     }
-
-    public Integer getIdTypeOperation() {
-        return idTypeOperation;
-    }
-
     public void setId(Integer id) {
         this.id = id;
     }
-
-    public void setIdTypeOperation(Integer idTypeOperation) {
-        this.idTypeOperation = idTypeOperation;
+    public TypeOperation getTypeOperation() {
+        return typeOperation;
+    }
+    public void setTypeOperation(TypeOperation typeOperation) {
+        this.typeOperation = typeOperation;
     }
 }
