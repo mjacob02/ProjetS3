@@ -1,5 +1,9 @@
-package fr.insa.jacob.projets3.views.exemplaire;
+package fr.insa.jacob.projets3.views.produit;
 
+import fr.insa.jacob.projets3.entity.Produit;
+import fr.insa.jacob.projets3.services.GammeService;
+import fr.insa.jacob.projets3.services.ProduitService;
+import fr.insa.jacob.projets3.views.MainLayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
@@ -10,30 +14,24 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.spring.annotation.SpringComponent;
-import fr.insa.jacob.projets3.entity.Exemplaire;
-import fr.insa.jacob.projets3.entity.Produit;
-import fr.insa.jacob.projets3.services.ExemplaireService;
-import fr.insa.jacob.projets3.services.ProduitService;
-import fr.insa.jacob.projets3.views.MainLayout;
-import fr.insa.jacob.projets3.views.produit.ProduitForm;
 import jakarta.annotation.security.PermitAll;
 import org.springframework.context.annotation.Scope;
 
 @SpringComponent
 @Scope("prototype")
 @PermitAll
-@Route(value = "exemplaire", layout = MainLayout.class)
-@PageTitle("Exemplaire | Vaadin CRM")
-public class ExemplaireView extends VerticalLayout {
-    Grid<Exemplaire> grid = new Grid<>(Exemplaire.class);
+@Route(value = "produits", layout = MainLayout.class)
+@PageTitle("Produits | Vaadin CRM")
+public class ProduitView extends VerticalLayout {
+    Grid<Produit> grid = new Grid<>(Produit.class);
     TextField filterText = new TextField();
-    ExemplaireForm form;
-    ExemplaireService exemplaireService;
+    ProduitForm form;
     ProduitService produitService;
+    GammeService gammeService;
 
-    public ExemplaireView(ExemplaireService service, ProduitService produitService) {
-        this.exemplaireService = service;
-        this.produitService = produitService;
+    public ProduitView(ProduitService service, GammeService gammeService) {
+        this.produitService = service;
+        this.gammeService = gammeService;
 
         addClassName("list-view");
         setSizeFull();
@@ -55,35 +53,36 @@ public class ExemplaireView extends VerticalLayout {
     }
 
     private void configureForm() {
-        form = new ExemplaireForm(produitService.listAll()); // Instanciate the form with the list of gamme
+        form = new ProduitForm(gammeService.listAll()); // Instanciate the form with the list of gamme
         form.setWidth("25em");
         // Listen to the events fired by the form and handle them in this class :
-        form.addSaveListener(this::saveExemplaire);
-        form.addDeleteListener(this::deleteExemplaire);
+        form.addSaveListener(this::saveProduit);
+        form.addDeleteListener(this::deleteProduit);
         form.addCloseListener(e -> closeEditor());
     }
 
-    private void saveExemplaire(ExemplaireForm.SaveEvent event) {
-        exemplaireService.save(event.getExemplaire());
+    private void saveProduit(ProduitForm.SaveEvent event) {
+        produitService.save(event.getProduit());
         updateList();
         closeEditor();
     }
 
-    private void deleteExemplaire(ExemplaireForm.DeleteEvent event) {
-        exemplaireService.delete(event.getExemplaire());
+    private void deleteProduit(ProduitForm.DeleteEvent event) {
+        produitService.delete(event.getProduit());
         updateList();
         closeEditor();
     }
 
     private void configureGrid() {
-        grid.addClassNames("Exemplaire-grid");
+        grid.addClassNames("Produit-grid");
         grid.setSizeFull();
-        grid.setColumns("numeroDeSerie"); // Add columns to the grid
-        grid.addColumn(exemplaire -> exemplaire.getProduit() != null ? exemplaire.getProduit() : "").setHeader("Produit");  // Add a column with the produit reference (that can be null)
+        grid.setColumns("reference", "description"); // Add columns to the grid
+//        grid.addColumn(produit -> produit.getGamme().getReference()).setHeader("Gamme");    // If not null, add a column with the gamme reference
+        grid.addColumn(produit -> produit.getGamme() != null ? produit.getGamme().getReference() : "").setHeader("Gamme");  // Add a column with the gamme reference (that can be null)
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
         grid.asSingleSelect().addValueChangeListener(event ->
-                editExemplaire(event.getValue()));
+                editProduit(event.getValue()));
     }
 
     private Component getToolbar() {
@@ -91,38 +90,38 @@ public class ExemplaireView extends VerticalLayout {
         filterText.setClearButtonVisible(true);
         filterText.setValueChangeMode(ValueChangeMode.LAZY);
         filterText.addValueChangeListener(e -> updateList());
-        var toolbar = new HorizontalLayout(filterText);
+
+        Button addProduitButton = new Button("Add produit");
+        addProduitButton.addClickListener(click -> addProduit());
+
+        var toolbar = new HorizontalLayout(filterText, addProduitButton);
         toolbar.addClassName("toolbar");
         return toolbar;
     }
 
-    public void editExemplaire(Exemplaire exemplaire) {
-        if (exemplaire == null) {
+    public void editProduit(Produit produit) {
+        if (produit == null) {
             closeEditor();
         } else {
-            form.setExemplaire(exemplaire);
+            form.setProduit(produit);
             form.setVisible(true);
             addClassName("editing");
         }
     }
 
     private void closeEditor() {
-        form.setExemplaire(null);
+        form.setProduit(null);
         form.setVisible(false);
         removeClassName("editing");
     }
 
-    private void addExemplaire() {
+    private void addProduit() {
         grid.asSingleSelect().clear();
-        editExemplaire(new Exemplaire());
+        editProduit(new Produit());
     }
 
 
     private void updateList() {
-        grid.setItems(exemplaireService.findAll(filterText.getValue()));
+        grid.setItems(produitService.findAll(filterText.getValue()));
     }
 }
-
-
-
-
