@@ -1,5 +1,5 @@
 package fr.insa.jacob.projets3.views.operationEffectuee;
-/*
+
 import fr.insa.jacob.projets3.entity.Exemplaire;
 import fr.insa.jacob.projets3.entity.OperationEffectuee;
 import fr.insa.jacob.projets3.services.ExemplaireService;
@@ -24,8 +24,8 @@ import org.springframework.context.annotation.Scope;
 @SpringComponent
 @Scope("prototype")
 @PermitAll
-@Route(value = "produits", layout = MainLayout.class)
-@PageTitle("Produits | Vaadin CRM")
+@Route(value = "OperationEffectuee", layout = MainLayout.class)
+@PageTitle("OperationEffectuee | Vaadin CRM")
 public class OperationEffectueeView extends VerticalLayout {
     Grid<OperationEffectuee> grid = new Grid<>(OperationEffectuee.class);
     TextField filterText = new TextField();
@@ -34,7 +34,7 @@ public class OperationEffectueeView extends VerticalLayout {
     ExemplaireService exemplaireService;
 
 
-    public OperationEffectueeView(OperationEffectueeService service ,ExemplaireServiceService exemplaireServiceService) {
+    public OperationEffectueeView(OperationEffectueeService service ,ExemplaireService exemplaireService) {
         this.operationEffectueeService = service;
         this.exemplaireService = exemplaireService;
 
@@ -83,11 +83,14 @@ public class OperationEffectueeView extends VerticalLayout {
         grid.setSizeFull();
         grid.setColumns("exemplaire", "operation","machine","debutOperation", "finOperation"); // Add columns to the grid
 //        grid.addColumn(produit -> produit.getGamme().getReference()).setHeader("Gamme");    // If not null, add a column with the gamme reference
-       /* grid.addColumn(produit -> produit.getGamme() != null ? produit.getGamme().getReference() : "").setHeader("Gamme");  // Add a column with the gamme reference (that can be null)
+        grid.addColumn(exemplaire -> exemplaire.getReference() != null ? exemplaire.getReference().getNumeroDeSerie() : "").setHeader("Reference");  // Add a column with the gamme reference (that can be null)
+       // TOTO: rajouter une description à operation dans la BDD et dans le programme
+        //grid.addColumn(operation -> operation.getDescription() != null ? operation.getDescription() : "").setHeader("Description");  // Add a column with the gamme reference (that can be null)
+        grid.addColumn(machine -> machine.getReference() != null ? machine.getReference().getDescription() : "").setHeader("Reference");  // Add a column with the gamme reference (that can be null)
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
         grid.asSingleSelect().addValueChangeListener(event ->
-                editProduit(event.getValue()));
+                editOperationEffectuee(event.getValue()));
     }
 
     private Component getToolbar() {
@@ -96,6 +99,7 @@ public class OperationEffectueeView extends VerticalLayout {
         filterText.setValueChangeMode(ValueChangeMode.LAZY);
         filterText.addValueChangeListener(e -> updateList());
 
+        //rajouter ça dans exemplaire
         Button addExemplaireButton = new Button("Add exemplaire");
         addExemplaireButton.addClickListener(click -> addExemplaire());
 
@@ -104,84 +108,34 @@ public class OperationEffectueeView extends VerticalLayout {
         return toolbar;
     }
 
-    public void editExemplaire(Exemplaire exemplaire) {
-        if (exemplaire == null) {
+    public void editOperationEffectuee(OperationEffectuee operationEffectuee) {
+        if (operationEffectuee == null) {
             closeEditor();
         } else {
-            form.setExemplaire(exemplaire);
+            form.setOperationEffectuee(operationEffectuee);
             form.setVisible(true);
             addClassName("editing");
         }
     }
 
     private void closeEditor() {
-        form.setExemplaire(null);
+        form.setOperationEffectuee(null);
         form.setVisible(false);
         removeClassName("editing");
     }
 
-    private void addExemplaire() {
+    private void addOperationEffectuee() {
         grid.asSingleSelect().clear();
-        editExemplaire(new Exemplaire());
+        editOperationEffectuee(new OperationEffectuee());
     }
 
 
     private void updateList() {
-        grid.setItems(ExemplaireService.findAll(filterText.getValue()));
+        grid.setItems(OperationEffectueeService.findAll(filterText.getValue()));
     }
-*/
 
 
-    /*test avec video vaadin*/
-package com.example.application.views.list;
 
-import com.example.application.data.Contact;
-import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.data.value.ValueChangeMode;
-import com.vaadin.flow.router.PageTitle;
-import com.vaadin.flow.router.Route;
-
-    @Route(value = "")
-    @PageTitle("vue operation effectuee")
-    public class ListView extends VerticalLayout {
-        Grid<OperationEffectuee> grid = new Grid<>(OperationEffectuee.class);
-        TextField filterText = new TextField();
-
-        public ListView() {
-            addClassName("list-view");
-            setSizeFull();
-            configureGrid();
-
-            add(getToolbar(), grid);
-        }
-
-        private void configureGrid() {
-            grid.addClassNames("OperationEffectuee-grid");
-            grid.setSizeFull();
-            grid.setColumns("Exemplaire", "Operation", "Machine", "Debut Operation", "Fin Operation");
-            /*Est ce qu'on en a besoin ?*//*
-            grid.addColumn(contact -> contact.getStatus().getName()).setHeader("Status");
-            grid.addColumn(contact -> contact.getCompany().getName()).setHeader("Company");
-            grid.getColumns().forEach(col -> col.setAutoWidth(true));*/
-        }
-
-        private HorizontalLayout getToolbar() {
-            filterText.setPlaceholder("Filter by name...");
-            filterText.setClearButtonVisible(true);
-            filterText.setValueChangeMode(ValueChangeMode.LAZY);
-
-            Button addExemplaireButton = new Button("Ajouter un Exemplaire");
-
-            var toolbar = new HorizontalLayout(filterText, addExemplaireButton);
-            toolbar.addClassName("toolbar");
-            return toolbar;
-        }
-    }
 }
 
 
