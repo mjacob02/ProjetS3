@@ -1,7 +1,6 @@
 package fr.insa.jacob.projets3.views.gamme;
 
 import fr.insa.jacob.projets3.entity.Gamme;
-import fr.insa.jacob.projets3.services.GammeOperationService;
 import fr.insa.jacob.projets3.services.GammeService;
 import fr.insa.jacob.projets3.views.MainLayout;
 import com.vaadin.flow.component.Component;
@@ -27,7 +26,6 @@ public class GammeView extends VerticalLayout {
     TextField filterText = new TextField();
     GammeForm form;
     GammeService gammeService;
-    // GammeOperationService gammeOperationService;
 
     public GammeView(GammeService service) {
         this.gammeService = service;
@@ -52,7 +50,7 @@ public class GammeView extends VerticalLayout {
     }
 
     private void configureForm() {
-      //  form = new GammeForm(gammeOperationService.listAll());
+  //      form = new GammeForm(gammeOperationService.listAll()); // Instanciate the form with the list of gamme
         form.setWidth("25em");
         // Listen to the events fired by the form and handle them in this class :
         form.addSaveListener(this::saveGamme);
@@ -72,12 +70,12 @@ public class GammeView extends VerticalLayout {
         closeEditor();
     }
 
-    private void configureGrid() {//pas sur
+    private void configureGrid() {
         grid.addClassNames("Gamme-grid");
         grid.setSizeFull();
         grid.setColumns("reference", "description"); // Add columns to the grid
 //        grid.addColumn(gamme -> gamme.getGammeOperation().getReference()).setHeader("GammeOperation");    // If not null, add a column with the gammeOperation reference
-//       grid.addColumn(gamme -> gamme.getGammeOperation() != null ? gamme.getGammeOperation().getReference() : "").setHeader("GammeOperation");  // Add a column with the gammeoperation reference (that can be null)
+//        grid.addColumn(gamme -> gamme.getGammeOperation() != null ? gamme.getGammeOperation().getReference() : "").setHeader("GammeOperation");  // Add a column with the gammeoperation reference (that can be null)
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
         grid.asSingleSelect().addValueChangeListener(event ->
