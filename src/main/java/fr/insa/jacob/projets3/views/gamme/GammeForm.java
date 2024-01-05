@@ -1,7 +1,6 @@
 package fr.insa.jacob.projets3.views.gamme;
 
 import fr.insa.jacob.projets3.entity.Gamme;
-import fr.insa.jacob.projets3.entity.GammeOperation;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.ComponentEventListener;
@@ -40,7 +39,6 @@ public class GammeForm extends FormLayout {
 
         add(reference,
                 description,
-                gamme,
                 createButtonsLayout()); // To display the fields in the form
     }
 
