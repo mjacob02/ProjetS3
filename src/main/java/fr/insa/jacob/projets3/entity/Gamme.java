@@ -48,10 +48,10 @@ public class Gamme implements Serializable {
 
     @ManyToMany
     @JoinTable(
-            name = "GammeOperation",
-            joinColumns = @JoinColumn(name = "gamme_id"),
-            inverseJoinColumns = @JoinColumn(name = "operation_id"))
-    Set<Operation> gammeOperation;
+            name = "Gamme_Operation",
+            joinColumns = @JoinColumn(name = "idGamme"),
+            inverseJoinColumns = @JoinColumn(name = "idOperation"))
+    Set<Operation> operations;
 
 // TODO : handle many-tomany : https://www.baeldung.com/jpa-many-to-many
 //    public Gamme getGammeOperation() {

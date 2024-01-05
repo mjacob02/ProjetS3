@@ -36,8 +36,8 @@ public class Operation implements Serializable {
     }
 
 
-    @ManyToMany(mappedBy = "GammeOperation")
-    Set<Gamme> gammeOperation;
+    @ManyToMany(mappedBy = "operations")
+    Set<Gamme> gammes;
 
 }
 
