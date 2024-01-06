@@ -15,7 +15,6 @@ public class MachineService {
     @Autowired
     private MachineRepository machineRepository;
 
-
     public void delete(Integer id) {
         machineRepository.deleteById(id);
     }
@@ -24,6 +23,10 @@ public class MachineService {
     private Machine requireOne(Integer id) {
         return machineRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Resource not found: " + id));
+    }
+
+    public List<Machine> listAll() {
+        return machineRepository.findAll();
     }
 
     public List<Machine> findAll(String stringFilter) {
@@ -35,10 +38,18 @@ public class MachineService {
     }
 
     public void delete(Machine machine) {
-        // TODO : take code from ProduitService
+        machineRepository.delete(machine);
     }
 
-    public void save(Machine machine) {
-        // TODO : take code from ProduitService
+    public Machine save(Machine machine) {
+        if (machine == null) {
+            System.err.println("Machine is null. Are you sure you have connected your form to the application?");
+            return null;
+        }
+        return machineRepository.save(machine);
     }
 }
+
+
+
+

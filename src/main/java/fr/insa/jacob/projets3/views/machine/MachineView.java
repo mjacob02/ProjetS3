@@ -11,11 +11,9 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.spring.annotation.SpringComponent;
 import fr.insa.jacob.projets3.entity.Machine;
-import fr.insa.jacob.projets3.entity.Produit;
 import fr.insa.jacob.projets3.services.EtatMachineService;
 import fr.insa.jacob.projets3.services.MachineService;
 import fr.insa.jacob.projets3.views.MainLayout;
-import fr.insa.jacob.projets3.views.machine.MachineForm;
 import jakarta.annotation.security.PermitAll;
 import org.springframework.context.annotation.Scope;
 
@@ -31,9 +29,9 @@ public class MachineView extends VerticalLayout {
     MachineService machineService;
     EtatMachineService etatMachineService;
 
-    public MachineView(MachineService service, EtatMachineService etatMachineService) {
+    public MachineView (MachineService service, EtatMachineService etatMachineService) {
         this.machineService = service;
-        this.machineService = machineService;
+        this.etatMachineService = etatMachineService;
 
         addClassName("list-view");
         setSizeFull();
@@ -78,9 +76,9 @@ public class MachineView extends VerticalLayout {
     private void configureGrid() {
         grid.addClassNames("Machine-grid");
         grid.setSizeFull();
-        grid.setColumns("Référence de la machine", "Description de la machine","Puissance de la machine ","Cout horraire"); // Add columns to the grid
+        grid.setColumns("Référence", "Description","Puissance ","CoutHoraire"); // Add columns to the grid
 //        grid.addColumn(produit -> produit.getGamme().getReference()).setHeader("Gamme");    // If not null, add a column with the gamme reference
-        grid.addColumn(machine -> machine.getIdEtatMachine() != null ? machine.getIdEtatMachine() : "").setHeader("Etat de la machine");  // Add a column with the gamme reference (that can be null)
+        grid.addColumn(machine -> machine.getEtatMachine() != null ? machine.getEtatMachine() : "").setHeader("Etat de la machine");  // Add a column with the gamme reference (that can be null)
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
         grid.asSingleSelect().addValueChangeListener(event ->
@@ -127,5 +125,4 @@ public class MachineView extends VerticalLayout {
         grid.setItems(machineService.findAll(filterText.getValue()));
     }
 }
-
 

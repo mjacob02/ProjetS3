@@ -13,10 +13,8 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.shared.Registration;
-import fr.insa.jacob.projets3.entity.Exemplaire;
-import fr.insa.jacob.projets3.entity.OperationEffectuee;
-import fr.insa.jacob.projets3.entity.Operation;
-import fr.insa.jacob.projets3.entity.Machine;
+import fr.insa.jacob.projets3.entity.*;
+import fr.insa.jacob.projets3.views.exemplaire.ExemplaireForm;
 
 import java.util.List;
 
@@ -32,14 +30,41 @@ public class OperationEffectueeForm extends FormLayout {
     Button delete = new Button("Delete");
     Button close = new Button("Cancel");
     // Other fields omitted
+    Binder<OperationEffectuee> binder = new BeanValidationBinder<>(OperationEffectuee.class); // To validate the form
 
+    public OperationEffectueeForm(List<Exemplaire> exemplaires) {
+    }
+    private Component createButtonsLayout() {
+        save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        delete.addThemeVariants(ButtonVariant.LUMO_ERROR);
+        close.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
 
+        save.addClickShortcut(Key.ENTER);
+        close.addClickShortcut(Key.ESCAPE);
+
+        save.addClickListener(event -> validateAndSave());
+        delete.addClickListener(event -> fireEvent(new OperationEffectueeForm.DeleteEvent(this, binder.getBean())));
+        close.addClickListener(event -> fireEvent(new OperationEffectueeForm.CloseEvent(this)));
+
+        binder.addStatusChangeListener(e -> save.setEnabled(binder.isValid()));
+        return new HorizontalLayout(save, delete, close);
+    }
+
+    private void validateAndSave() {
+        if (binder.isValid()) {
+            fireEvent(new OperationEffectueeForm.SaveEvent(this, binder.getBean()));
+        }
+    }
+
+    public void setOperationEffectuee(OperationEffectuee operationEffectuee) {
+        binder.setBean(operationEffectuee);    // To fill the form with the data of the selected entity
+    }
 
     // Events
-    public static abstract class OperationEffectueeFormEvent extends ComponentEvent<fr.insa.jacob.projets3.views.operationEffectuee.OperationEffectueeForm> {
+    public static abstract class OperationEffectueeFormEvent extends ComponentEvent<OperationEffectueeForm> {
         private OperationEffectuee operationEffectuee;
 
-        protected OperationEffectueeEvent(fr.insa.jacob.projets3.views.operationEffectuee.OperationEffectueeForm source, OperationEffectuee operationEffectuee) {
+        protected OperationEffectueeFormEvent(OperationEffectueeForm source, OperationEffectuee operationEffectuee) {
             super(source, false);
             this.operationEffectuee = operationEffectuee;
         }
@@ -49,94 +74,34 @@ public class OperationEffectueeForm extends FormLayout {
         }
     }
 
-    public static class SaveEvent extends fr.insa.jacob.projets3.views.operationEffectuee.OperationEffectueeForm.OperationEffectueeFormEvent {
-        SaveEvent(fr.insa.jacob.projets3.views.operationEffectuee.OperationEffectueeForm source, OperationEffectuee operationEffectuee) {
+    public static class SaveEvent extends OperationEffectueeFormEvent {
+        SaveEvent(OperationEffectueeForm source, OperationEffectuee operationEffectuee) {
             super(source, operationEffectuee);
         }
     }
 
-    public static class DeleteEvent extends fr.insa.jacob.projets3.views.operationEffectuee.OperationEffectueeForm.OperationEffectueeFormEvent {
-        DeleteEvent(fr.insa.jacob.projets3.views.operationEffectuee.OperationEffectueeForm source, OperationEffectuee operationEffectuee) {
+    public static class DeleteEvent extends OperationEffectueeFormEvent {
+        DeleteEvent(OperationEffectueeForm source, OperationEffectuee operationEffectuee) {
             super(source, operationEffectuee);
         }
 
     }
 
-    public static class CloseEvent extends fr.insa.jacob.projets3.views.operationEffectuee.OperationEffectueeForm.OperationEffectueeFormEvent {
-        CloseEvent(fr.insa.jacob.projets3.views.operationEffectuee.OperationEffectueeForm source) {
+    public static class CloseEvent extends OperationEffectueeFormEvent {
+        CloseEvent(OperationEffectueeForm source) {
             super(source, null);
         }
     }
 
-    public Registration addDeleteListener(ComponentEventListener<fr.insa.jacob.projets3.views.operationEffectuee.OperationEffectueeForm.DeleteEvent> listener) {
-        return addListener(fr.insa.jacob.projets3.views.operationEffectuee.OperationEffectueeForm.DeleteEvent.class, listener);
+    public Registration addDeleteListener(ComponentEventListener<DeleteEvent> listener) {
+        return addListener(DeleteEvent.class, listener);
     }
 
-    public Registration addSaveListener(ComponentEventListener<fr.insa.jacob.projets3.views.operationEffectuee.OperationEffectueeForm.SaveEvent> listener) {
-        return addListener(fr.insa.jacob.projets3.views.operationEffectuee.OperationEffectueeForm.SaveEvent.class, listener);
+    public Registration addSaveListener(ComponentEventListener<OperationEffectueeForm.SaveEvent> listener) {
+        return addListener(OperationEffectueeForm.SaveEvent.class, listener);
     }
 
-    public Registration addCloseListener(ComponentEventListener<fr.insa.jacob.projets3.views.operationEffectuee.OperationEffectueeForm.CloseEvent> listener) {
-        return addListener(fr.insa.jacob.projets3.views.operationEffectuee.OperationEffectueeForm.CloseEvent.class, listener);
-    }
-
-
-
-
-    /*Test avec video vaadin*/
-    package com.example.application.views.list;
-
-import com.example.application.data.Company;
-import com.example.application.data.Status;
-import com.vaadin.flow.component.Key;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.combobox.ComboBox;
-import com.vaadin.flow.component.formlayout.FormLayout;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.textfield.EmailField;
-import com.vaadin.flow.component.textfield.TextField;
-
-import java.util.List;
-
-    public class ContactForm extends FormLayout {
-        TextField exemplaire = new TextField("Exemplaire");
-        TextField operation = new TextField("Operation");
-        TextField machine = new TextField("Machine");
-        TextField debutOperation = new TextField("Debut Operation");
-        TextField FinOperation = new TextField("Operation");
-        /*ComboBox<Status> status = new ComboBox<>("Status");
-        ComboBox<Company> company = new ComboBox<>("Company");*/
-
-        Button save = new Button("Save");
-        Button delete = new Button("Delete");
-        Button close = new Button("Cancel");
-
-       /* public ContactForm(List<Company> companies, List<Status> statuses) {
-            addClassName("contact-form");
-
-            company.setItems(companies);
-            company.setItemLabelGenerator(Company::getName);
-            status.setItems(statuses);
-            status.setItemLabelGenerator(Status::getName);
-
-            add(firstName,
-                    lastName,
-                    email,
-                    company,
-                    status,
-                    createButtonsLayout());
-        }*/
-
-        private HorizontalLayout createButtonsLayout() {
-            save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-            delete.addThemeVariants(ButtonVariant.LUMO_ERROR);
-            close.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
-
-            save.addClickShortcut(Key.ENTER);
-            close.addClickShortcut(Key.ESCAPE);
-
-            return new HorizontalLayout(save, delete, close);
-        }
+    public Registration addCloseListener(ComponentEventListener<OperationEffectueeForm.CloseEvent> listener) {
+        return addListener(OperationEffectueeForm.CloseEvent.class, listener);
     }
 }

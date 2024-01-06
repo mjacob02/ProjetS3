@@ -12,28 +12,40 @@ public class Machine implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+
     @Id
-    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name = "idEtatMachine")
+    private EtatMachine etatMachine;
 
     @Column(name = "idPosteDeTravail", nullable = false)
     private Integer idPosteDeTravail;
 
-    @Column(name = "idEtatMachine", nullable = false)
-    private Integer idEtatMachine;
-
-    @Column(name = "reference", nullable = false)
+    @Column(name = "Reference", nullable = false)
     private String reference;
 
-    @Column(name = "puissance", nullable = false)
+    @Column(name = "Puissance", nullable = false)
     private Double puissance;
 
-    @Column(name = "coutHoraire", nullable = false)
+    @Column(name = "CoutHoraire", nullable = false)
     private Double coutHoraire;
 
     @Column(name = "description", nullable = false)
     private String description;
+
+
+    public EtatMachine getEtatMachine() {
+        return etatMachine;
+    }
+
+    public void setEtatMachine(EtatMachine etatMachine) {
+        this.etatMachine = etatMachine;
+    }
+
+
 
     public Integer getId() {
         return id;
@@ -43,9 +55,7 @@ public class Machine implements Serializable {
         return idPosteDeTravail;
     }
 
-    public Integer getIdEtatMachine() {
-        return idEtatMachine;
-    }
+
 
     public String getReference() {
         return reference;
@@ -66,14 +76,10 @@ public class Machine implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-
     public void setIdPosteDeTravail(Integer idPosteDeTravail) {
         this.idPosteDeTravail = idPosteDeTravail;
     }
 
-    public void setIdEtatMachine(Integer idEtatMachine) {
-        this.idEtatMachine = idEtatMachine;
-    }
 
     public void setReference(String reference) {
         this.reference = reference;
@@ -90,5 +96,7 @@ public class Machine implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
 
 }
