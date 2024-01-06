@@ -9,22 +9,23 @@ import java.io.Serializable;
 @Entity
 @Table(name = "EtatMachine")
 public class EtatMachine implements Serializable {
-
     private static final long serialVersionUID = 1L;
-
     @Id
-    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "Description", nullable = false)
     private String description;
-    @Column(name = "Référence", nullable = false)
+
+    @Column(name = "Reference", nullable = false)
     private String reference;
-    @Column(name = "Puissance ", nullable = false)
+
+    @Column(name = "Puissance", nullable = false)
     private Double puissance;
-    @Column(name = "Cout Horraire", nullable = false)
+
+    @Column(name = "CoutHoraire", nullable = false)
     private Double coutHoraire;
+
     public Integer getId() {
         return id;
     }
