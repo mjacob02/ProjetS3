@@ -4,7 +4,7 @@ import fr.insa.jacob.projets3.entity.Operation;
 import fr.insa.jacob.projets3.entity.TypeOperation;
 import fr.insa.jacob.projets3.services.GammeService;
 import fr.insa.jacob.projets3.services.OperationService;
-import fr.insa.jacob.projets3.services.ProduitService;
+import fr.insa.jacob.projets3.services.OperationService;
 import fr.insa.jacob.projets3.services.TypeOperationService;
 import fr.insa.jacob.projets3.views.MainLayout;
 import com.vaadin.flow.component.Component;
@@ -17,24 +17,24 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.spring.annotation.SpringComponent;
-import fr.insa.jacob.projets3.views.produit.ProduitForm;
+import fr.insa.jacob.projets3.views.operation.OperationForm;
 import jakarta.annotation.security.PermitAll;
 import org.springframework.context.annotation.Scope;
 
 @SpringComponent
 @Scope("prototype")
 @PermitAll
-@Route(value = "produits", layout = MainLayout.class)
-@PageTitle("Produits | Vaadin CRM")
+@Route(value = "Operation", layout = MainLayout.class)
+@PageTitle("Operation | Vaadin CRM")
 public class OperationView extends VerticalLayout {
     Grid<Operation> grid = new Grid<>(Operation.class);
     TextField filterText = new TextField();
-    ProduitForm form;
-    OperationService OperationService;
+    OperationForm form;
+    OperationService operationService;
     TypeOperationService typeOperationService;
 
     public OperationView(OperationService service, TypeOperationService typeOperationService ) {
-        this.OperationService = service;
+        this.operationService = service;
         this.typeOperationService = typeOperationService;
 
         addClassName("list-view");
@@ -57,7 +57,7 @@ public class OperationView extends VerticalLayout {
     }
 
     private void configureForm() {
-        form = new ProduitForm(typeOperationService.listAll()); // Instanciate the form with the list of typeOperation
+        form = new OperationForm(typeOperationService.listAll()); // Instanciate the form with the list of typeOperation
         form.setWidth("25em");
         // Listen to the events fired by the form and handle them in this class :
         form.addSaveListener(this::saveOperation);
@@ -65,18 +65,14 @@ public class OperationView extends VerticalLayout {
         form.addCloseListener(e -> closeEditor());
     }
 
-    private void saveOperation(ProduitForm.SaveEvent saveEvent) {
-
-    }
-
     private void saveOperation(OperationForm.SaveEvent event) {
-        OperationService.save(event.getOperation());
+        operationService.save(event.getOperation());
         updateList();
         closeEditor();
     }
 
-    private void deleteOperation(ProduitForm.DeleteEvent event) {
-        OperationService.delete(event.getOperation());
+    private void deleteOperation(OperationForm.DeleteEvent event) {
+        operationService.delete(event.getOperation());
         updateList();
         closeEditor();
     }
@@ -86,15 +82,15 @@ public class OperationView extends VerticalLayout {
         grid.setSizeFull();
         grid.setColumns("typeOperation", "operation","description","operationAmont","operationAval"); // Add columns to the grid
 //        grid.addColumn(produit -> produit.getGamme().getReference()).setHeader("Gamme");    // If not null, add a column with the gamme reference
-        grid.addColumn(operation -> operation.getTypeOperation() != null ? operation.getTypeOperation().getDescription() : "").setHeader("Gamme");  // Add a column with the gamme reference (that can be null)
+        grid.addColumn(operation -> operation.getDescription() != null ? operation.getDescription() : "").setHeader("Operation");  // Add a column with the gamme reference (that can be null)
+        grid.addColumn(typeOperation -> typeOperation.getDescription() != null ? typeOperation.getDescription() : "").setHeader("TypeOperation");  // Add a column with the gamme reference (that can be null)
+
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
         grid.asSingleSelect().addValueChangeListener(event ->
-                editProduit(event.getValue()));
+                editOperation(event.getValue()));
     }
 
-    private void editProduit(Operation value) {
-    }
 
     private Component getToolbar() {
         filterText.setPlaceholder("Filter by typeOperation...");
@@ -102,43 +98,38 @@ public class OperationView extends VerticalLayout {
         filterText.setValueChangeMode(ValueChangeMode.LAZY);
         filterText.addValueChangeListener(e -> updateList());
 
-        Button addProduitButton = new Button("Add typeOperation");
-        addProduitButton.addClickListener(click -> addProduit());
+        Button addTypeOperationButton = new Button("Add typeOperation");
+        addTypeOperationButton.addClickListener(click -> addTypeOperation());
 
-        Component addTypeOperationButton;
         var toolbar = new HorizontalLayout(filterText, addTypeOperationButton);
         toolbar.addClassName("toolbar");
         return toolbar;
     }
 
-    private void addProduit() {
-
-    }
-
-    public void editTypeOperation(TypeOperation typeOperation) {
-        if (typeOperation == null) {
+    public void editOperation(Operation operation) {
+        if (operation == null) {
             closeEditor();
         } else {
-            form.setTypeOperation(typeOperation);
+            form.setOperation(operation);
             form.setVisible(true);
             addClassName("editing");
         }
     }
 
     private void closeEditor() {
-        form.setTypeOperation(null);
+        form.setOperation(null);
         form.setVisible(false);
         removeClassName("editing");
     }
 
-    private void addTypeOperation() {
+    private void addOperation() {
         grid.asSingleSelect().clear();
-        editTypeOperation(new TypeOperation());
+        editOperation(new Operation());
     }
 
 
     private void updateList() {
-        grid.setItems(typeOperationService.findAll(filterText.getValue()));
+        grid.setItems(operationService.findAll(filterText.getValue()));
     }
 }
 
