@@ -15,38 +15,29 @@ import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.shared.Registration;
 import fr.insa.jacob.projets3.entity.Gamme;
 import fr.insa.jacob.projets3.entity.Machine;
-import fr.insa.jacob.projets3.entity.Produit;
-import fr.insa.jacob.projets3.views.produit.ProduitForm;
+import fr.insa.jacob.projets3.entity.EtatMachine;
+
 
 import java.util.List;
 
 public class MachineForm extends FormLayout {
-    TextField referencedelamachine = new TextField("Référence de la machine");
-    TextField descriptiondelamachine = new TextField("Description de la machine");
-    TextField puissancedelamachine= new TextField("Puissance de la machine");
-    TextField couthorraire= new TextField("Cout Horraire");
+    TextField reference = new TextField("Référence");
+    TextField description = new TextField("Description");
+    TextField puissance= new TextField("Puissance");
+    TextField coutHoraire= new TextField("Cout Horraire");
+
     Button save = new Button("Save");
     Button delete = new Button("Delete");
     Button close = new Button("Cancel");
     // Other fields omitted
     Binder<Machine> binder = new BeanValidationBinder<>(Machine.class); // To validate the form
 
-    public MachineForm(Object o) {
+    public MachineForm(List<EtatMachine> etatMachine) {
 
     }
 
-   /*public MachineForm(List<> gammes) {
-        addClassName("machine-form"); // To style the form with CSS
-        binder.bindInstanceFields(this);  // To bind the fields of the form to the fields of the entity
 
-        gamme.setItems(gammes);
-        gamme.setItemLabelGenerator(Gamme::getReference);  // To display the name of the company in the combo box
 
-        add(reference,
-                description,
-                gamme,
-                createButtonsLayout()); // To display the fields in the form
-    }*/
 
     private Component createButtonsLayout() {
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
@@ -120,4 +111,3 @@ public class MachineForm extends FormLayout {
         return addListener(CloseEvent.class, listener);
     }
 }
-

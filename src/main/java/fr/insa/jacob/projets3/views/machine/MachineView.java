@@ -11,11 +11,9 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.spring.annotation.SpringComponent;
 import fr.insa.jacob.projets3.entity.Machine;
-import fr.insa.jacob.projets3.entity.Produit;
 import fr.insa.jacob.projets3.services.EtatMachineService;
 import fr.insa.jacob.projets3.services.MachineService;
 import fr.insa.jacob.projets3.views.MainLayout;
-import fr.insa.jacob.projets3.views.machine.MachineForm;
 import jakarta.annotation.security.PermitAll;
 import org.springframework.context.annotation.Scope;
 
@@ -31,9 +29,9 @@ public class MachineView extends VerticalLayout {
     MachineService machineService;
     EtatMachineService etatMachineService;
 
-    public MachineView(MachineService service, EtatMachineService etatMachineService) {
+    public MachineView (MachineService service, EtatMachineService etatMachineService) {
         this.machineService = service;
-        this.machineService = machineService;
+        this.etatMachineService = etatMachineService;
 
         addClassName("list-view");
         setSizeFull();
@@ -127,5 +125,4 @@ public class MachineView extends VerticalLayout {
         grid.setItems(machineService.findAll(filterText.getValue()));
     }
 }
-
 

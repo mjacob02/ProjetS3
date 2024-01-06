@@ -16,24 +16,27 @@ public class Machine implements Serializable {
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    @ManyToOne
+    @JoinColumn(name = "idEtatMachine")
+    private EtatMachine etatMachine;
     @Column(name = "idPosteDeTravail", nullable = false)
     private Integer idPosteDeTravail;
 
     @Column(name = "idEtatMachine", nullable = false)
     private Integer idEtatMachine;
 
-    @Column(name = "reference", nullable = false)
+    @Column(name = "Référence", nullable = false)
     private String reference;
 
-    @Column(name = "puissance", nullable = false)
+    @Column(name = "Puissance", nullable = false)
     private Double puissance;
 
-    @Column(name = "coutHoraire", nullable = false)
+    @Column(name = "Cout Horraire", nullable = false)
     private Double coutHoraire;
 
     @Column(name = "description", nullable = false)
     private String description;
+
 
     public Integer getId() {
         return id;
@@ -66,7 +69,6 @@ public class Machine implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-
     public void setIdPosteDeTravail(Integer idPosteDeTravail) {
         this.idPosteDeTravail = idPosteDeTravail;
     }
@@ -90,5 +92,13 @@ public class Machine implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+    public EtatMachine getEtatMachine() {
+        return etatMachine;
+
+    }
+    public void setEtatMachine(EtatMachine etatMachine) {
+        this.etatMachine = etatMachine;
+    }
+
 
 }
