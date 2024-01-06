@@ -22,7 +22,7 @@ public class MachineForm extends FormLayout {
     TextField reference = new TextField("Référence");
     TextField description = new TextField("Description");
     TextField puissance= new TextField("Puissance");
-    TextField coutHoraire= new TextField("Cout Horraire");
+    TextField coutHoraire= new TextField("CoutHoraire");
 
     Button save = new Button("Save");
     Button delete = new Button("Delete");
