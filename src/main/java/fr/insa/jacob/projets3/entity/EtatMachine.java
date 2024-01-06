@@ -23,7 +23,7 @@ public class EtatMachine implements Serializable {
     private String reference;
     @Column(name = "Puissance ", nullable = false)
     private Double puissance;
-    @Column(name = "Cout Horraire", nullable = false)
+    @Column(name = "CoutHoraire", nullable = false)
     private Double coutHoraire;
     public Integer getId() {
         return id;
