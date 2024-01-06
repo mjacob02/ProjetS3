@@ -3,7 +3,6 @@ package fr.insa.jacob.projets3.entity;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.Set;
 
 @Entity
 @Table(name = "Gamme")
@@ -46,12 +45,6 @@ public class Gamme implements Serializable {
         this.description = description;
     }
 
-    @ManyToMany
-    @JoinTable(
-            name = "GammeOperation",
-            joinColumns = @JoinColumn(name = "gamme_id"),
-            inverseJoinColumns = @JoinColumn(name = "operation_id"))
-    Set<Operation> gammeOperation;
 
 // TODO : handle many-tomany : https://www.baeldung.com/jpa-many-to-many
 //    public Gamme getGammeOperation() {
