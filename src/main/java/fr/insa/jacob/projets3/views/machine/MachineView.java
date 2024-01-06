@@ -78,7 +78,7 @@ public class MachineView extends VerticalLayout {
         grid.setSizeFull();
         grid.setColumns("Référence de la machine", "Description de la machine","Puissance de la machine ","Cout horraire"); // Add columns to the grid
 //        grid.addColumn(produit -> produit.getGamme().getReference()).setHeader("Gamme");    // If not null, add a column with the gamme reference
-        grid.addColumn(machine -> machine.getIdEtatMachine() != null ? machine.getIdEtatMachine() : "").setHeader("Etat de la machine");  // Add a column with the gamme reference (that can be null)
+        grid.addColumn(machine -> machine.getEtatMachine() != null ? machine.getEtatMachine() : "").setHeader("Etat de la machine");  // Add a column with the gamme reference (that can be null)
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
         grid.asSingleSelect().addValueChangeListener(event ->
