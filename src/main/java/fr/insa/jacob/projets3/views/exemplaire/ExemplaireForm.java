@@ -22,7 +22,7 @@ import fr.insa.jacob.projets3.views.exemplaire.ExemplaireForm;
 import java.util.List;
 
 public class ExemplaireForm extends FormLayout {
-    TextField produit = new TextField("Produit"); // TODO: remplacer par une ComboBox<Produit> : voir ProduitForm ligne 25.
+    ComboBox<Produit> produit = new ComboBox<>("Produit");
     TextField numeroDeSerie = new TextField("Numéro de série");
 //    Button operationseffectueespourlexemplaire = new Button("Opérations effectuées pour l'exemplaire");
     Button save = new Button("Save");
@@ -32,12 +32,23 @@ public class ExemplaireForm extends FormLayout {
     Binder<Exemplaire> binder = new BeanValidationBinder<>(Exemplaire.class); // To validate the form
 
     public ExemplaireForm(List<Produit> produits) {
-        //TODO : s'inspirer de ProduitForm ligne 32 à 42 pour :
+       /* addClassName("exemplaire-form"); // To style the form with CSS
+        binder.bindInstanceFields(this);  // To bind the fields of the form to the fields of the entity
+
+        produit.setItems(produit);
+        produit.setItemLabelGenerator(produit::getReference);  // To display the name of the company in the combo box
+
+        add(reference,
+                description,
+                gamme,
+                createButtonsLayout()); // To display the fields in the form */
+    }
+        //TODO : s'inspirer de ProduitForm ligne 32 à 42 pour : OK mais ça marche pas
         // addClassName
         // binder.bindInstanceFields
         // La récupération de la liste des produits pour la ComboBox produit (avec les setItems et setItemLabelGenerator)
         // L'ajout des composants dans le formulaire (add(reference, ...))
-    }
+
 
 
     private Component createButtonsLayout() {
