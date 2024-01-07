@@ -78,8 +78,8 @@ public class ExemplaireView extends VerticalLayout {
     private void configureGrid() {
         grid.addClassNames("Exemplaire-grid");
         grid.setSizeFull();
+        // TODO : ajouter la colonne pour la référence du produit : que l'ont obtient avec exemplaire.getProduit().getReference(). Voir ProduitView ligne 81 pour gérer l'ajout d'une colonne où l'on affiche une info d'un objet lié à l'objet de la ligne.
         grid.setColumns("numeroDeSerie"); // Add columns to the grid
-        grid.addColumn(exemplaire -> exemplaire.getProduit() != null ? exemplaire.getProduit() : "").setHeader("Produit");  // Add a column with the produit reference (that can be null)
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
         grid.asSingleSelect().addValueChangeListener(event ->
@@ -91,6 +91,13 @@ public class ExemplaireView extends VerticalLayout {
         filterText.setClearButtonVisible(true);
         filterText.setValueChangeMode(ValueChangeMode.LAZY);
         filterText.addValueChangeListener(e -> updateList());
+
+        // TODO : ajouter le bouton d'ajout d'exemplaire (addExemplaireButton) Ligne 94 et 95 de ProduitView :
+        /* Le code pour le produit (à adapter pour l'exemplaire) :
+        Button addProduitButton = new Button("Add produit");
+        addProduitButton.addClickListener(click -> addProduit());
+        */
+
         var toolbar = new HorizontalLayout(filterText);
         toolbar.addClassName("toolbar");
         return toolbar;

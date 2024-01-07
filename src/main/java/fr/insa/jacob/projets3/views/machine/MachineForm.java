@@ -24,6 +24,7 @@ public class MachineForm extends FormLayout {
     TextField puissance= new TextField("Puissance");
     TextField coutHoraire= new TextField("CoutHoraire");
 
+    // TODO : ajouter une ComboBox<EtatMachine>, s'inspirer de ProduitForm ligne 25
     Button save = new Button("Save");
     Button delete = new Button("Delete");
     Button close = new Button("Cancel");
@@ -31,7 +32,11 @@ public class MachineForm extends FormLayout {
     Binder<Machine> binder = new BeanValidationBinder<>(Machine.class); // To validate the form
 
     public MachineForm(List<EtatMachine> etatMachine) {
-
+        //TODO : s'inspirer de ProduitForm ligne 32 à 42 pour :
+        // addClassName
+        // binder.bindInstanceFields
+        // La récupération de la liste des etatMachine pour la ComboBox etatMachine (avec les setItems et setItemLabelGenerator)
+        // L'ajout des composants dans le formulaire (add(reference, ...))
     }
 
 

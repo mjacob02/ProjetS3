@@ -53,7 +53,7 @@ public class MainLayout extends AppLayout {
 
         nav.addItem(new SideNavItem("Produit", ProduitView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
         nav.addItem(new SideNavItem("Exemplaire", ExemplaireView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
-
+        // TODO : ajouter les liens vers les nouvelles interfaces ici
 
         // ADD NEW ENTRY HERE
 

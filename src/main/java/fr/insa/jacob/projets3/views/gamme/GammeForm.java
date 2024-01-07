@@ -22,18 +22,19 @@ public class GammeForm extends FormLayout {
     TextField reference = new TextField("Référence");
     TextField description = new TextField("Description");
 
-    ComboBox<Operation> operation = new ComboBox<>("Sélectionner les opérations de la gamme");
+    ComboBox<Operation> operation = new ComboBox<>("Sélectionner les opérations de la gamme");  // TODO : remplacer par MultiSelectComboBox<Operation> https://vaadin.com/docs/latest/components/multi-select-combo-box
 
     Button save = new Button("Save");
     Button delete = new Button("Delete");
     Button close = new Button("Cancel");
     // Other fields omitted
-    Binder<Gamme> binder = new BeanValidationBinder<>(GammeOperation.class); // To validate the form
+    Binder<Gamme> binder = new BeanValidationBinder<>(Gamme.class); // To validate the form
 
     public GammeForm(List<Gamme> gammes) {
         addClassName("gamme-form"); // To style the form with CSS
         binder.bindInstanceFields(this);  // To bind the fields of the form to the fields of the entity
 
+        // TODO : remplacer "gamme" par operation ci dessous ! C'est cette ComboBox qui doit contenir les opérations de la gamme
         gamme.setItems(gammes);
         gamme.setItemLabelGenerator(Gamme::getReference);  // To display the name of the company in the combo box
 
@@ -89,35 +90,30 @@ public class GammeForm extends FormLayout {
         }
     }
 
-    public static class DeleteEvent extends fr.insa.jacob.projets3.views.gamme.GammeForm.GammeFormEvent {
+    public static class DeleteEvent extends GammeFormEvent {
         DeleteEvent(fr.insa.jacob.projets3.views.gamme.GammeForm source, Gamme gamme) {
             super(source, gamme);
         }
 
     }
 
-    public static class CloseEvent extends fr.insa.jacob.projets3.views.gamme.GammeForm.GammeFormEvent {
+    public static class CloseEvent extends GammeFormEvent {
         CloseEvent(fr.insa.jacob.projets3.views.gamme.GammeForm source) {
             super(source, null);
         }
     }
 
-    public Registration addDeleteListener(ComponentEventListener<fr.insa.jacob.projets3.views.gamme.GammeForm.DeleteEvent> listener) {
-        return addListener(fr.insa.jacob.projets3.views.gamme.GammeForm.DeleteEvent.class, listener);
+    public Registration addDeleteListener(ComponentEventListener<DeleteEvent> listener) {
+        return addListener(DeleteEvent.class, listener);
     }
 
-    public Registration addSaveListener(ComponentEventListener<fr.insa.jacob.projets3.views.gamme.GammeForm.SaveEvent> listener) {
-        return addListener(fr.insa.jacob.projets3.views.gamme.GammeForm.SaveEvent.class, listener);
+    public Registration addSaveListener(ComponentEventListener<SaveEvent> listener) {
+        return addListener(SaveEvent.class, listener);
     }
 
-    public Registration addCloseListener(ComponentEventListener<fr.insa.jacob.projets3.views.gamme.GammeForm.CloseEvent> listener) {
-        return addListener(fr.insa.jacob.projets3.views.gamme.GammeForm.CloseEvent.class, listener);
+    public Registration addCloseListener(ComponentEventListener<CloseEvent> listener) {
+        return addListener(CloseEvent.class, listener);
     }
 
-    private class CloseEvent extends ComponentEvent<?> {
-        public CloseEvent(GammeForm gammeForm) {
-            super();
-        }
-    }
 }
 

@@ -22,9 +22,9 @@ import fr.insa.jacob.projets3.views.exemplaire.ExemplaireForm;
 import java.util.List;
 
 public class ExemplaireForm extends FormLayout {
-    TextField produit = new TextField("Produit");
+    TextField produit = new TextField("Produit"); // TODO: remplacer par une ComboBox<Produit> : voir ProduitForm ligne 25.
     TextField numeroDeSerie = new TextField("Numéro de série");
-    Button operationseffectueespourlexemplaire = new Button("Opérations effectuées pour l'exemplaire");
+//    Button operationseffectueespourlexemplaire = new Button("Opérations effectuées pour l'exemplaire");
     Button save = new Button("Save");
     Button delete = new Button("Delete");
     Button close = new Button("Cancel");
@@ -32,6 +32,11 @@ public class ExemplaireForm extends FormLayout {
     Binder<Exemplaire> binder = new BeanValidationBinder<>(Exemplaire.class); // To validate the form
 
     public ExemplaireForm(List<Produit> produits) {
+        //TODO : s'inspirer de ProduitForm ligne 32 à 42 pour :
+        // addClassName
+        // binder.bindInstanceFields
+        // La récupération de la liste des produits pour la ComboBox produit (avec les setItems et setItemLabelGenerator)
+        // L'ajout des composants dans le formulaire (add(reference, ...))
     }
 
 
