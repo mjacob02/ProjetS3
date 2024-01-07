@@ -8,6 +8,7 @@
       <excludeFolder url="file://$MODULE_DIR$/src/main/java/fr/insa/jacob/projets3/views/gammeOperation" />
       <excludeFolder url="file://$MODULE_DIR$/src/main/java/fr/insa/jacob/projets3/views/list" />
       <excludeFolder url="file://$MODULE_DIR$/src/main/java/fr/insa/jacob/projets3/views/machine" />
+      <excludeFolder url="file://$MODULE_DIR$/src/main/java/fr/insa/jacob/projets3/views/TypeOperation" />
     </content>
   </component>
 </module>
