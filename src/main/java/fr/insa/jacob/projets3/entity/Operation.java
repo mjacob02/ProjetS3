@@ -20,10 +20,12 @@ public class Operation implements Serializable {
     @Column(name = "idTypeOperation", nullable = false)
     private Integer idTypeOperation;
 
-    // TODO : ajouter une colonne "reference" dans la table "Operation" dans la base de données (pour avoir un nom lisible pour l'opération : sinon il n'y a pas de nom !)
-    // TODO : ajouter ensuite la colonne "reference" dans cette classe Operation (comme pour les autres colonnes de la table Operation)
-    // TODO : ajouter les getter et setter pour la colonne "reference" (comme pour les autres colonnes de la table Operation)
-    // TODO : faire les mêmes étapes pour "description"
+    @Column(name = "Reference", nullable = false)
+    private String reference;
+
+    @Column(name = "description", nullable = false)
+    private String description;
+
     public Integer getId() {
         return id;
     }
@@ -39,4 +41,19 @@ public class Operation implements Serializable {
     public void setIdTypeOperation(Integer idTypeOperation) {
         this.idTypeOperation = idTypeOperation;
     }
+
+    public String getReference() {
+        return reference;
+    }
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 }
