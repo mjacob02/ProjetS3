@@ -79,7 +79,6 @@ public class ExemplaireView extends VerticalLayout {
         grid.addClassNames("Exemplaire-grid");
         grid.setSizeFull();
         grid.addColumn(exemplaire -> exemplaire.getProduit() != null ? exemplaire.getProduit().getReference() : "").setHeader("Reference");
-        // TODO : ajouter la colonne pour la référence du produit : que l'ont obtient avec exemplaire.getProduit().getReference(). Voir ProduitView ligne 81 pour gérer l'ajout d'une colonne où l'on affiche une info d'un objet lié à l'objet de la ligne. OK mais pas 100% sure que j'ai fait ça correctement
         grid.setColumns("numeroDeSerie"); // Add columns to the grid
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
