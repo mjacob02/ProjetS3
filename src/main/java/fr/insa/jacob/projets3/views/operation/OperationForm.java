@@ -20,11 +20,17 @@ import fr.insa.jacob.projets3.entity.TypeOperation;
 import java.util.List;
 
 public class OperationForm extends FormLayout {
-    TextField typeOperation = new TextField("Type d'Opération");    // TODO : remplacer par une ComboBox<TypeOperation> : voir ProduitForm ligne 25.
-    TextField operation = new TextField("Opération");   // TODO : remplacer par reference
+    ComboBox<TypeOperation> typeOperation = new ComboBox<>("Type Opération");
+    TextField operation = new TextField("Référence");
     TextField description = new TextField("Description");
-    TextField operationAmont = new TextField("Opération Amont");    // TODO : remplacer par MultiSelectComboBox<Operation> https://vaadin.com/docs/latest/components/multi-select-combo-box
+    TextField operationAmont = new TextField("Opération Amont");
     TextField operationAval = new TextField("Opération Aval");
+
+    MultiSelectComboBox<Operation> comboBox = new MultiSelectComboBox<>("Opérations");
+    comboBox.setItems(DataService.getOperation());
+    comboBox.setItemLabelGenerator(Operation::getDescription);
+    add(comboBox);
+
 
     /*ComboBox<Gamme> gamme = new ComboBox<>("Gamme");*/
 
