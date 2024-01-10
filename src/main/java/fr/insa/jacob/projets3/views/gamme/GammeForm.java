@@ -34,12 +34,13 @@ public class GammeForm extends FormLayout {
         addClassName("gamme-form"); // To style the form with CSS
         binder.bindInstanceFields(this);  // To bind the fields of the form to the fields of the entity
 
-        // TODO : remplacer "gamme" par operation ci dessous ! C'est cette ComboBox qui doit contenir les opérations de la gamme
+        // C'est cette ComboBox qui doit contenir les opérations de la gamme
         operation.setItems(operation);
         operation.setItemLabelGenerator(Operation::getReference);  // To display the name of the company in the combo box
 
         add(reference,
                 description,
+                operation,
                 createButtonsLayout()); // To display the fields in the form
     }
 
