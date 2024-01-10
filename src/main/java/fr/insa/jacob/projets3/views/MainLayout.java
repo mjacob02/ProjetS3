@@ -53,7 +53,12 @@ public class MainLayout extends AppLayout {
 
         nav.addItem(new SideNavItem("Produit", ProduitView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
         nav.addItem(new SideNavItem("Exemplaire", ExemplaireView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
-        // TODO : ajouter les liens vers les nouvelles interfaces ici
+       // nav.addItem(new SideNavItem("Gamme", GammeView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
+       // nav.addItem(new SideNavItem("Machine", MachineView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
+       // nav.addItem(new SideNavItem("Operation", OperationView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
+       // nav.addItem(new SideNavItem("TypeOperation", TypeOperationView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
+       // nav.addItem(new SideNavItem("OperationEffectuee", OperationEffectueeView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
+
 
         // ADD NEW ENTRY HERE
 
