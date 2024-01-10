@@ -1,5 +1,6 @@
 package fr.insa.jacob.projets3.views.gamme;
 
+import com.vaadin.flow.component.combobox.MultiSelectComboBox;
 import fr.insa.jacob.projets3.entity.Gamme;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEvent;
@@ -22,7 +23,14 @@ public class GammeForm extends FormLayout {
     TextField reference = new TextField("Référence");
     TextField description = new TextField("Description");
 
-    ComboBox<Operation> operation = new ComboBox<>("Sélectionner les opérations de la gamme");  // TODO : remplacer par MultiSelectComboBox<Operation> https://vaadin.com/docs/latest/components/multi-select-combo-box
+
+ // TODO : OK mais marche pas : remplacer par MultiSelectComboBox<Operation> https://vaadin.com/docs/latest/components/multi-select-combo-box
+
+    MultiSelectComboBox<Operation> comboBox = new MultiSelectComboBox<>("Sélectionner les opérations de la gamme");
+comboBox.setItems(DataService.getOperation());
+comboBox.setItemLabelGenerator(Operation::getDescription);
+    add(comboBox);
+
 
     Button save = new Button("Save");
     Button delete = new Button("Delete");

@@ -99,7 +99,7 @@ public class OperationEffectueeView extends VerticalLayout {
         filterText.setValueChangeMode(ValueChangeMode.LAZY);
         filterText.addValueChangeListener(e -> updateList());
 
-        //rajouter ça dans exemplaire
+        //rajouter ça dans exemplaire (c est fait)
         Button addExemplaireButton = new Button("Add exemplaire");
         addExemplaireButton.addClickListener(click -> addExemplaire());
 
