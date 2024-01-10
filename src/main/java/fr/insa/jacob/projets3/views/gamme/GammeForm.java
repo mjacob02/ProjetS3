@@ -35,8 +35,8 @@ public class GammeForm extends FormLayout {
         binder.bindInstanceFields(this);  // To bind the fields of the form to the fields of the entity
 
         // TODO : remplacer "gamme" par operation ci dessous ! C'est cette ComboBox qui doit contenir les opérations de la gamme
-        gamme.setItems(gammes);
-        gamme.setItemLabelGenerator(Gamme::getReference);  // To display the name of the company in the combo box
+        operation.setItems(operation);
+        operation.setItemLabelGenerator(Operation::getReference);  // To display the name of the company in the combo box
 
         add(reference,
                 description,
