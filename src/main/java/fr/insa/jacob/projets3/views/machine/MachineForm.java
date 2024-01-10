@@ -6,12 +6,14 @@ import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.shared.Registration;
+import fr.insa.jacob.projets3.entity.Gamme;
 import fr.insa.jacob.projets3.entity.Machine;
 import fr.insa.jacob.projets3.entity.EtatMachine;
 
@@ -21,26 +23,30 @@ import java.util.List;
 public class MachineForm extends FormLayout {
     TextField reference = new TextField("Référence");
     TextField description = new TextField("Description");
-    TextField puissance= new TextField("Puissance");
-    TextField coutHoraire= new TextField("CoutHoraire");
-
-    // TODO : ajouter une ComboBox<EtatMachine>, s'inspirer de ProduitForm ligne 25
+    TextField puissance = new TextField("Puissance");
+    TextField coutHoraire = new TextField("Coût Horaire");
+    ComboBox<EtatMachine> etatMachineComboBox = new ComboBox<>("EtatMachine");
     Button save = new Button("Save");
     Button delete = new Button("Delete");
     Button close = new Button("Cancel");
     // Other fields omitted
     Binder<Machine> binder = new BeanValidationBinder<>(Machine.class); // To validate the form
 
-    public MachineForm(List<EtatMachine> etatMachine) {
-        //TODO : s'inspirer de ProduitForm ligne 32 à 42 pour :
-        // addClassName
-        // binder.bindInstanceFields
-        // La récupération de la liste des etatMachine pour la ComboBox etatMachine (avec les setItems et setItemLabelGenerator)
-        // L'ajout des composants dans le formulaire (add(reference, ...))
+    public MachineForm(List<EtatMachine> etatMachines) {
+        addClassName("machine-form");
+        add(
+                reference,
+                description,
+                puissance,
+                coutHoraire,
+                etatMachineComboBox,
+                createButtonsLayout()
+        );
+
+        // Lier la liste des états de machine à la ComboBox
+        etatMachineComboBox.setItems(etatMachines);
+        etatMachineComboBox.setItemLabelGenerator(EtatMachine::getDescription); // Utilisation de la description comme libellé dans la ComboBox
     }
-
-
-
 
     private Component createButtonsLayout() {
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
