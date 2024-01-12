@@ -32,22 +32,14 @@ public class ExemplaireForm extends FormLayout {
     Binder<Exemplaire> binder = new BeanValidationBinder<>(Exemplaire.class); // To validate the form
 
     public ExemplaireForm(List<Produit> produits) {
-       /* addClassName("exemplaire-form"); // To style the form with CSS
-        binder.bindInstanceFields(this);  // To bind the fields of the form to the fields of the entity
+        addClassName("exemplaire-form"); // Pour styliser le formulaire avec CSS
+        binder.bindInstanceFields(this); // Pour lier les champs du formulaire aux champs de l'entité
 
-        produit.setItems(produit);
-        produit.setItemLabelGenerator(produit::getReference);  // To display the name of the company in the combo box
+        produit.setItems(produits);
+        produit.setItemLabelGenerator(Produit::getReference); // Pour afficher le nom du produit dans la liste déroulante
 
-        add(reference,
-                description,
-                gamme,
-                createButtonsLayout()); // To display the fields in the form */
+        add(produit, numeroDeSerie, createButtonsLayout()); // Ajouter les composants au formulaire
     }
-        //TODO : s'inspirer de ProduitForm ligne 32 à 42 pour : OK mais ça marche pas
-        // addClassName
-        // binder.bindInstanceFields
-        // La récupération de la liste des produits pour la ComboBox produit (avec les setItems et setItemLabelGenerator)
-        // L'ajout des composants dans le formulaire (add(reference, ...))
 
 
 
