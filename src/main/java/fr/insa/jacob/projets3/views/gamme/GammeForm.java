@@ -22,9 +22,6 @@ public class GammeForm extends FormLayout {
     TextField reference = new TextField("Référence");
     TextField description = new TextField("Description");
 
-
- // TODO : OK mais marche pas : remplacer par MultiSelectComboBox<Operation> https://vaadin.com/docs/latest/components/multi-select-combo-box
-
     MultiSelectComboBox<Operation> operations = new MultiSelectComboBox<>("Sélectionner les opérations de la gamme");
 
     Button save = new Button("Save");

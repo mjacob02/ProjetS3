@@ -29,6 +29,14 @@ public class Operation implements Serializable {
 
     @ManyToMany(mappedBy = "operations")
     Set<Gamme> gammes;
+
+    @ManyToMany
+    @JoinTable(
+            name = "Operation_Ordre",
+            joinColumns = @JoinColumn(name = "idOperationAval"),
+            inverseJoinColumns = @JoinColumn(name = "IdOperationAmont"))
+    Set<Operation> operationsAval;
+
     public Integer getId() {
         return id;
     }

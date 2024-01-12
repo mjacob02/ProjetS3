@@ -17,44 +17,23 @@ public class EtatMachine implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "Description", nullable = false)
-    private String description;
-    @Column(name = "Référence", nullable = false)
-    private String reference;
-    @Column(name = "Puissance ", nullable = false)
-    private Double puissance;
-    @Column(name = "CoutHoraire", nullable = false)
-    private Double coutHoraire;
+    @Column(name = "nom", nullable = false)
+    private String nom;
+
     public Integer getId() {
         return id;
     }
     public void setId(Integer id) {
         this.id = id;
     }
-    public String getReference() {
-        return reference;
+
+
+    public String getNom() {
+        return nom;
     }
 
-    public void setReference(String  reference) {
-        this. reference =  reference;
+    public void setNom(String nom ) {
+        this.nom = nom;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description ) {
-        this.description = description;
-    }
-    public Double getPuissance() {
-        return puissance;
-    }
-    public void setPuissance(Double puissance) {
-        this.puissance = puissance;
-    }
-
-    public Double getCoutHoraire(){ return coutHoraire;}
-    public void setCoutHoraire(Double coutHoraire) {
-        this.coutHoraire = coutHoraire;
-    }
 }

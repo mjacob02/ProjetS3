@@ -26,13 +26,9 @@ public class OperationForm extends FormLayout {
     TextField operationAmont = new TextField("Opération Amont");
     TextField operationAval = new TextField("Opération Aval");
 
-    MultiSelectComboBox<Operation> gammes = new MultiSelectComboBox<>("Opérations");
-    gammes.setItems(DataService.getOperation());
-    gammes.setItemLabelGenerator(Operation::getDescription);
-    add(gammes);
+    MultiSelectComboBox<Operation> operations = new MultiSelectComboBox<>("Opérations");
 
-
-    /*ComboBox<Gamme> gamme = new ComboBox<>("Gamme");*/
+// TODO rajouter une multicombobox pour renseigner les operations amont
 
     Button save = new Button("Save");
     Button delete = new Button("Delete");
@@ -41,8 +37,17 @@ public class OperationForm extends FormLayout {
     // Other fields omitted
     Binder<Operation> binder = new BeanValidationBinder<>(Operation.class); // To validate the form
 
-    public OperationForm(List<TypeOperation> typeOperation) {
-        }
+
+    public OperationForm(List<TypeOperation> typeOperations) {
+        addClassName("operation-form"); // To style the form with CSS
+        this.typeOperations.setItems(typeOperations);
+        this.typeOperations.setItemLabelGenerator(Operation::getDescription);
+        add(     reference,
+                description,
+                typeOperations,
+                createButtonsLayout()); // To display the fields in the form
+
+    }
 
     private Component createButtonsLayout() {
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
