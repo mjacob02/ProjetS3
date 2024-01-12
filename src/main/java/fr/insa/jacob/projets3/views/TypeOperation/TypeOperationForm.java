@@ -45,7 +45,7 @@ public class TypeOperationForm extends FormLayout {
     Button delete = new Button("Delete");
     Button close = new Button("Cancel");
     // Other fields omitted
-    Binder<TypeOperation> binder = new BeanValidationBinder<>(TypeOperationForm.class); // To validate the form
+    Binder<TypeOperation> binder = new BeanValidationBinder<>(TypeOperation.class); // To validate the form
 
     /*public TypeOperationFormForm(List<Gamme> gammes) {
         addClassName("produit-form"); // To style the form with CSS
