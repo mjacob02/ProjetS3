@@ -32,7 +32,7 @@ public class TypeOperationView extends VerticalLayout {
     TypeOperationService typeOperationService;
 
     public TypeOperationView(TypeOperationService service) {
-        this.typeOperationService = service;
+        this.typeOperationService = typeOperationService;
 
 
         addClassName("list-view");

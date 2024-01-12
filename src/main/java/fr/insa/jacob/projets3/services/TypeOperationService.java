@@ -1,5 +1,6 @@
 package fr.insa.jacob.projets3.services;
 
+import fr.insa.jacob.projets3.entity.Exemplaire;
 import fr.insa.jacob.projets3.entity.Gamme;
 import fr.insa.jacob.projets3.entity.Operation;
 import fr.insa.jacob.projets3.entity.TypeOperation;
@@ -35,4 +36,14 @@ public class TypeOperationService {
     public Operation findAll(String value) {
         return null;
     }
+
+    public Exemplaire save(Exemplaire exemplaire) {
+        if (exemplaire == null) {
+            System.err.println("Exemplaire is null. Are you sure you have connected your form to the application?");
+            return null;
+        }
+        return typeOperationRepository.save(typeOperation);
+    }
+
+
 }
