@@ -40,15 +40,8 @@ comboBox.setItemLabelGenerator(Operation::getDescription);
 
     public GammeForm(List<Gamme> gammes) {
         addClassName("gamme-form"); // To style the form with CSS
-        binder.bindInstanceFields(this);  // To bind the fields of the form to the fields of the entity
-
-        // C'est cette ComboBox qui doit contenir les opérations de la gamme
-        operation.setItems(operation);
-        operation.setItemLabelGenerator(Operation::getReference);  // To display the name of the company in the combo box
-
-        add(reference,
+       add(     reference,
                 description,
-                operation,
                 createButtonsLayout()); // To display the fields in the form
     }
 
@@ -61,8 +54,8 @@ comboBox.setItemLabelGenerator(Operation::getDescription);
         close.addClickShortcut(Key.ESCAPE);
 
         save.addClickListener(event -> validateAndSave());
-        delete.addClickListener(event -> fireEvent(new fr.insa.jacob.projets3.views.produit.GammeForm.DeleteEvent(this, binder.getBean())));
-        close.addClickListener(event -> fireEvent(new CloseEvent(this)));
+        delete.addClickListener(event -> fireEvent(new GammeForm.DeleteEvent(this, binder.getBean())));
+        close.addClickListener(event -> fireEvent(new GammeForm.CloseEvent(this)));
 
         binder.addStatusChangeListener(e -> save.setEnabled(binder.isValid()));
         return new HorizontalLayout(save, delete, close);
@@ -70,7 +63,7 @@ comboBox.setItemLabelGenerator(Operation::getDescription);
 
     private void validateAndSave() {
         if (binder.isValid()) {
-            fireEvent(new fr.insa.jacob.projets3.views.produit.GammeForm.SaveEvent(this, binder.getBean()));
+            fireEvent(new GammeForm.SaveEvent(this, binder.getBean()));
         }
     }
 
