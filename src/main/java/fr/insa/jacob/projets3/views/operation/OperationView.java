@@ -98,10 +98,10 @@ public class OperationView extends VerticalLayout {
         filterText.setValueChangeMode(ValueChangeMode.LAZY);
         filterText.addValueChangeListener(e -> updateList());
 
-        Button addTypeOperationButton = new Button("Add typeOperation");
-        addTypeOperationButton.addClickListener(click -> addTypeOperation());
+        Button addOperationButton = new Button("Add operation");
+        addOperationButton.addClickListener(click -> addOperation());
 
-        var toolbar = new HorizontalLayout(filterText, addTypeOperationButton);
+        var toolbar = new HorizontalLayout(filterText, addOperationButton);
         toolbar.addClassName("toolbar");
         return toolbar;
     }
