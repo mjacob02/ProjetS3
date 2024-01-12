@@ -20,8 +20,8 @@ public class TypeOperationService {
     private TypeOperationRepository typeOperationRepository;
 
 
-    public void delete(Integer id) {
-        typeOperationRepository.deleteById(id);
+    public void delete(TypeOperation typeOperation) {
+        typeOperationRepository.delete(typeOperation);
     }
 
     private TypeOperation requireOne(Integer id) {
@@ -37,9 +37,9 @@ public class TypeOperationService {
         return null;
     }
 
-    public Exemplaire save(Exemplaire exemplaire) {
-        if (exemplaire == null) {
-            System.err.println("Exemplaire is null. Are you sure you have connected your form to the application?");
+    public TypeOperation save(TypeOperation typeOperation) {
+        if (typeOperation == null) {
+            System.err.println("TypeOperation is null. Are you sure you have connected your form to the application?");
             return null;
         }
         return typeOperationRepository.save(typeOperation);
