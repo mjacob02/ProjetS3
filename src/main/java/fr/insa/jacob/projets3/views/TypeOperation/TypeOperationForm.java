@@ -15,6 +15,7 @@ import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.shared.Registration;
 import fr.insa.jacob.projets3.entity.Gamme;
 import fr.insa.jacob.projets3.entity.TypeOperation;
+import fr.insa.jacob.projets3.views.exemplaire.ExemplaireForm;
 import fr.insa.jacob.projets3.views.typeOperation.TypeOperationForm;
 
 import java.util.List;
@@ -44,7 +45,7 @@ public class TypeOperationForm extends FormLayout {
     Button delete = new Button("Delete");
     Button close = new Button("Cancel");
     // Other fields omitted
-    Binder<TypeOperationForm> binder = new BeanValidationBinder<>(TypeOperationForm.class); // To validate the form
+    Binder<TypeOperation> binder = new BeanValidationBinder<>(TypeOperationForm.class); // To validate the form
 
     /*public TypeOperationFormForm(List<Gamme> gammes) {
         addClassName("produit-form"); // To style the form with CSS
@@ -77,7 +78,7 @@ public class TypeOperationForm extends FormLayout {
 
     private void validateAndSave() {
         if (binder.isValid()) {
-            fireEvent(new SaveEvent(this, binder.getBean()));
+            fireEvent(new TypeOperationForm.SaveEvent(this, binder.getBean()));
         }
     }
 
