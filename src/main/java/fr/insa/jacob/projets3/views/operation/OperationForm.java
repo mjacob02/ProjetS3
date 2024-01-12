@@ -1,7 +1,6 @@
 package fr.insa.jacob.projets3.views.operation;
 
 import com.vaadin.flow.component.combobox.MultiSelectComboBox;
-import fr.insa.jacob.projets3.entity.Gamme;
 import fr.insa.jacob.projets3.entity.Operation;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEvent;
@@ -27,10 +26,10 @@ public class OperationForm extends FormLayout {
     TextField operationAmont = new TextField("Opération Amont");
     TextField operationAval = new TextField("Opération Aval");
 
-    MultiSelectComboBox<Operation> comboBox = new MultiSelectComboBox<>("Opérations");
-    comboBox.setItems(DataService.getOperation());
-    comboBox.setItemLabelGenerator(Operation::getDescription);
-    add(comboBox);
+    MultiSelectComboBox<Operation> gammes = new MultiSelectComboBox<>("Opérations");
+    gammes.setItems(DataService.getOperation());
+    gammes.setItemLabelGenerator(Operation::getDescription);
+    add(gammes);
 
 
     /*ComboBox<Gamme> gamme = new ComboBox<>("Gamme");*/

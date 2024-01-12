@@ -55,7 +55,7 @@ public class TypeOperationView extends VerticalLayout {
 
     private void configureForm() {
 
-        form = new TypeOperationForm(typeOperationService.listAll()); // Instanciate the form with the list of gamme
+        form = new TypeOperationForm(); // Instanciate the form with the list of gamme
         form.setWidth("25em");
         // Listen to the events fired by the form and handle them in this class :
         form.addSaveListener(this::saveTypeOperation);

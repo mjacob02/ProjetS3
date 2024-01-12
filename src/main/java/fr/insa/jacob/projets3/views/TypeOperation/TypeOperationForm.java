@@ -46,18 +46,12 @@ public class TypeOperationForm extends FormLayout {
     // Other fields omitted
     Binder<TypeOperation> binder = new BeanValidationBinder<>(TypeOperation.class); // To validate the form
 
-    /*public TypeOperationFormForm(List<Gamme> gammes) {
-        addClassName("produit-form"); // To style the form with CSS
+    public TypeOperationForm () {
+        addClassName("TypeOperation-form"); // To style the form with CSS
         binder.bindInstanceFields(this);  // To bind the fields of the form to the fields of the entity
-
-        gamme.setItems(gammes);
-        gamme.setItemLabelGenerator(Gamme::getReference);  // To display the name of the company in the combo box
-
-        add(reference,
-                description,
-                gamme,
+        add(    description,
                 createButtonsLayout()); // To display the fields in the form
-    }*/
+    }
 
     private Component createButtonsLayout() {
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
