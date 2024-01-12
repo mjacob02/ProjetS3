@@ -19,8 +19,8 @@ public class OperationService {
 
 
 
-    public void delete(Integer id) {
-        operationRepository.deleteById(id);
+    public void delete(Operation operation) {
+        operationRepository.delete(operation);
     }
 
     private Operation requireOne(Integer id) {
@@ -28,7 +28,12 @@ public class OperationService {
                 .orElseThrow(() -> new NoSuchElementException("Resource not found: " + id));
     }
 
-    public void save(Operation operation) {
+    public Operation save(Operation operation) {
+        if (operation == null) {
+            System.err.println("Produit is null. Are you sure you have connected your form to the application?");
+            return null;
+        }
+        return operationRepository.save(operation);
     }
 
     public List<Operation> findAll(String stringFilter) {
