@@ -1,5 +1,6 @@
 package fr.insa.jacob.projets3.services;
 
+import fr.insa.jacob.projets3.entity.Exemplaire;
 import fr.insa.jacob.projets3.entity.OperationEffectuee;
 import fr.insa.jacob.projets3.entity.Produit;
 import fr.insa.jacob.projets3.repository.OperationEffectueeRepository;
@@ -29,7 +30,13 @@ public class OperationEffectueeService {
 
     public void save(OperationEffectuee operationEffectuee) {
     }
-
+    public List<OperationEffectuee> findAll(String stringFilter) {
+        if (stringFilter == null || stringFilter.isEmpty()) {
+            return operationEffectueeRepository.findAll();
+        } else {
+            return operationEffectueeRepository.search(stringFilter);
+        }
+    }
 
 
 }
