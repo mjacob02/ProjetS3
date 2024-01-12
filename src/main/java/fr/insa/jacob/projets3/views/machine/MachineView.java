@@ -77,7 +77,7 @@ public class MachineView extends VerticalLayout {
         grid.addClassNames("Machine-grid");
         grid.setSizeFull();
         grid.setColumns("reference", "description", "puissance", "coutHoraire");
-        grid.addColumn(machine -> machine.getEtatMachine() != null ? machine.getEtatMachine().getReference() : "")
+        grid.addColumn(machine -> machine.getEtatMachine() != null ? machine.getEtatMachine().getId() : "")
                 .setHeader("EtatMachine");
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
