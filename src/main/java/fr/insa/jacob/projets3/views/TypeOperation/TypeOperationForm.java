@@ -16,7 +16,6 @@ import com.vaadin.flow.shared.Registration;
 import fr.insa.jacob.projets3.entity.Gamme;
 import fr.insa.jacob.projets3.entity.TypeOperation;
 import fr.insa.jacob.projets3.views.exemplaire.ExemplaireForm;
-import fr.insa.jacob.projets3.views.typeOperation.TypeOperationForm;
 
 import java.util.List;
 

@@ -15,7 +15,6 @@ import fr.insa.jacob.projets3.entity.Produit;
 import fr.insa.jacob.projets3.services.TypeOperationService;
 import fr.insa.jacob.projets3.services.ProduitService;
 import fr.insa.jacob.projets3.views.MainLayout;
-import fr.insa.jacob.projets3.views.typeOperation.TypeOperationForm;
 import fr.insa.jacob.projets3.views.produit.ProduitForm;
 import jakarta.annotation.security.PermitAll;
 import org.springframework.context.annotation.Scope;
