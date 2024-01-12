@@ -57,7 +57,7 @@ public class OperationView extends VerticalLayout {
     }
 
     private void configureForm() {
-        form = new OperationForm(typeOperationService.listAll()); // Instanciate the form with the list of typeOperation
+        form = new OperationForm(operationService.listAll()); // Instanciate the form with the list of typeOperation
         form.setWidth("25em");
         // Listen to the events fired by the form and handle them in this class :
         form.addSaveListener(this::saveOperation);
