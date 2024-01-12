@@ -8,7 +8,6 @@ import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -26,9 +25,7 @@ public class GammeForm extends FormLayout {
 
  // TODO : OK mais marche pas : remplacer par MultiSelectComboBox<Operation> https://vaadin.com/docs/latest/components/multi-select-combo-box
 
-    MultiSelectComboBox<Operation> comboBox = new MultiSelectComboBox<>("Sélectionner les opérations de la gamme");
-
-
+    MultiSelectComboBox<Operation> operations = new MultiSelectComboBox<>("Sélectionner les opérations de la gamme");
 
     Button save = new Button("Save");
     Button delete = new Button("Delete");
@@ -38,11 +35,11 @@ public class GammeForm extends FormLayout {
 
     public GammeForm(List<Operation> operations) {
         addClassName("gamme-form"); // To style the form with CSS
-        comboBox.setItems(operations);
-        comboBox.setItemLabelGenerator(Operation::getDescription);
+        this.operations.setItems(operations);
+        this.operations.setItemLabelGenerator(Operation::getDescription);
        add(     reference,
                 description,
-                comboBox,
+               this.operations,
                 createButtonsLayout()); // To display the fields in the form
 
     }
