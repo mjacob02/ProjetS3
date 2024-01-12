@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 
 import java.io.Serializable;
+import java.util.Set;
 
 
 @Entity
@@ -26,6 +27,8 @@ public class Operation implements Serializable {
     @Column(name = "description", nullable = false)
     private String description;
 
+    @ManyToMany(mappedBy = "operations")
+    Set<Gamme> gammes;
     public Integer getId() {
         return id;
     }
