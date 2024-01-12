@@ -1,9 +1,6 @@
 package fr.insa.jacob.projets3.services;
 
-import fr.insa.jacob.projets3.entity.Exemplaire;
-import fr.insa.jacob.projets3.entity.Gamme;
-import fr.insa.jacob.projets3.entity.Operation;
-import fr.insa.jacob.projets3.entity.TypeOperation;
+import fr.insa.jacob.projets3.entity.*;
 import fr.insa.jacob.projets3.repository.TypeOperationRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +30,14 @@ public class TypeOperationService {
         return typeOperationRepository.findAll();
     }
 
-    public Operation findAll(String value) {
-        return null;
+    public List<TypeOperation> findAll(String stringFilter) {
+        if (stringFilter == null || stringFilter.isEmpty()) {
+            return typeOperationRepository.findAll();
+        } else {
+            return typeOperationRepository.search(stringFilter);
+        }
     }
+
 
     public TypeOperation save(TypeOperation typeOperation) {
         if (typeOperation == null) {
