@@ -38,13 +38,12 @@ public class OperationForm extends FormLayout {
     Binder<Operation> binder = new BeanValidationBinder<>(Operation.class); // To validate the form
 
 
-    public OperationForm(List<TypeOperation> typeOperations) {
+    public OperationForm(List<Operation> operations) { // Constructeur de OperationForm
         addClassName("operation-form"); // To style the form with CSS
-        this.typeOperations.setItems(typeOperations);
-        this.typeOperations.setItemLabelGenerator(Operation::getDescription);
-        add(     reference,
-                description,
-                typeOperations,
+        this.operations.setItems(operations);
+        this.operations.setItemLabelGenerator(Operation::getDescription);
+        add(    description,
+                this.operations,
                 createButtonsLayout()); // To display the fields in the form
 
     }
