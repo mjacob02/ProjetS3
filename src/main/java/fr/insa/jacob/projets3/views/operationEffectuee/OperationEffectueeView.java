@@ -84,7 +84,6 @@ public class OperationEffectueeView extends VerticalLayout {
         grid.setColumns("exemplaire", "operation","machine","debutOperation", "finOperation"); // Add columns to the grid
 //        grid.addColumn(produit -> produit.getGamme().getReference()).setHeader("Gamme");    // If not null, add a column with the gamme reference
         grid.addColumn(exemplaire -> exemplaire.getReference() != null ? exemplaire.getReference().getNumeroDeSerie() : "").setHeader("Reference");  // Add a column with the gamme reference (that can be null)
-       // TOTO: rajouter une description à operation dans la BDD et dans le programme
         //grid.addColumn(operation -> operation.getDescription() != null ? operation.getDescription() : "").setHeader("Description");  // Add a column with the gamme reference (that can be null)
         grid.addColumn(machine -> machine.getReference() != null ? machine.getReference().getDescription() : "").setHeader("Reference");  // Add a column with the gamme reference (that can be null)
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
