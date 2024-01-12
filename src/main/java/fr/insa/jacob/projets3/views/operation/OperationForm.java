@@ -1,5 +1,6 @@
 package fr.insa.jacob.projets3.views.operation;
 
+import com.vaadin.flow.component.combobox.MultiSelectComboBox;
 import fr.insa.jacob.projets3.entity.Gamme;
 import fr.insa.jacob.projets3.entity.Operation;
 import com.vaadin.flow.component.Component;

@@ -18,8 +18,8 @@ public class OperationEffectueeService {
     @Autowired
     private OperationEffectueeRepository operationEffectueeRepository;
 
-    public void delete(Integer id) {
-        operationEffectueeRepository.deleteById(id);
+    public void delete(OperationEffectuee operationEffectuee) {
+        operationEffectueeRepository.delete(operationEffectuee);
     }
 
 
