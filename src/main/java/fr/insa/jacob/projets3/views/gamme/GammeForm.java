@@ -27,9 +27,7 @@ public class GammeForm extends FormLayout {
  // TODO : OK mais marche pas : remplacer par MultiSelectComboBox<Operation> https://vaadin.com/docs/latest/components/multi-select-combo-box
 
     MultiSelectComboBox<Operation> comboBox = new MultiSelectComboBox<>("Sélectionner les opérations de la gamme");
-comboBox.setItems(DataService.getOperation());
-comboBox.setItemLabelGenerator(Operation::getDescription);
-    add(comboBox);
+
 
 
     Button save = new Button("Save");
@@ -38,11 +36,15 @@ comboBox.setItemLabelGenerator(Operation::getDescription);
     // Other fields omitted
     Binder<Gamme> binder = new BeanValidationBinder<>(Gamme.class); // To validate the form
 
-    public GammeForm(List<Gamme> gammes) {
+    public GammeForm(List<Operation> operations) {
         addClassName("gamme-form"); // To style the form with CSS
+        comboBox.setItems(operations);
+        comboBox.setItemLabelGenerator(Operation::getDescription);
        add(     reference,
                 description,
+                comboBox,
                 createButtonsLayout()); // To display the fields in the form
+
     }
 
     private Component createButtonsLayout() {

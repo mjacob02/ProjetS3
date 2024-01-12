@@ -2,6 +2,7 @@ package fr.insa.jacob.projets3.views.gamme;
 
 import fr.insa.jacob.projets3.entity.Gamme;
 import fr.insa.jacob.projets3.services.GammeService;
+import fr.insa.jacob.projets3.services.OperationService;
 import fr.insa.jacob.projets3.views.MainLayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
@@ -26,9 +27,11 @@ public class GammeView extends VerticalLayout {
     TextField filterText = new TextField();
     GammeForm form;
     GammeService gammeService;
+    OperationService operationService;
 
-    public GammeView(GammeService service) {
+    public GammeView(GammeService service, OperationService operationService) {
         this.gammeService = service;
+        this.operationService = operationService;
 
         addClassName("list-view");
         setSizeFull();
@@ -50,7 +53,7 @@ public class GammeView extends VerticalLayout {
     }
 
     private void configureForm() {
-  //      form = new GammeForm(gammeOperationService.listAll()); // Instanciate the form with the list of gamme
+        form = new GammeForm(operationService.listAll()); // Instanciate the form with the list of gamme
         form.setWidth("25em");
         // Listen to the events fired by the form and handle them in this class :
         form.addSaveListener(this::saveGamme);

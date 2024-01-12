@@ -2,6 +2,7 @@ package fr.insa.jacob.projets3.services;
 
 import fr.insa.jacob.projets3.entity.Exemplaire;
 import fr.insa.jacob.projets3.entity.Operation;
+import fr.insa.jacob.projets3.entity.Produit;
 import fr.insa.jacob.projets3.repository.OperationRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,12 @@ public class OperationService {
         } else {
             return operationRepository.search(stringFilter);
         }
+    }
+
+    /***
+     * List all Operation
+     */
+    public List<Operation> listAll() {
+        return operationRepository.findAll();
     }
 }
