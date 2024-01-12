@@ -104,4 +104,5 @@ public class OperationEffectueeForm extends FormLayout {
     public Registration addCloseListener(ComponentEventListener<OperationEffectueeForm.CloseEvent> listener) {
         return addListener(OperationEffectueeForm.CloseEvent.class, listener);
     }
+
 }

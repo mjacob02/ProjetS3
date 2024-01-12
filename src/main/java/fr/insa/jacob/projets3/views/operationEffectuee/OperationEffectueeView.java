@@ -2,6 +2,7 @@ package fr.insa.jacob.projets3.views.operationEffectuee;
 
 import fr.insa.jacob.projets3.entity.Exemplaire;
 import fr.insa.jacob.projets3.entity.OperationEffectuee;
+import fr.insa.jacob.projets3.entity.Produit;
 import fr.insa.jacob.projets3.services.ExemplaireService;
 import fr.insa.jacob.projets3.services.GammeService;
 import fr.insa.jacob.projets3.services.OperationEffectueeService;
@@ -98,7 +99,7 @@ public class OperationEffectueeView extends VerticalLayout {
         filterText.setValueChangeMode(ValueChangeMode.LAZY);
         filterText.addValueChangeListener(e -> updateList());
 
-        //rajouter ça dans exemplaire (c est fait)
+
         Button addExemplaireButton = new Button("Add exemplaire");
         addExemplaireButton.addClickListener(click -> addExemplaire());
 
@@ -107,6 +108,19 @@ public class OperationEffectueeView extends VerticalLayout {
         return toolbar;
     }
 
+    private void addExemplaire() {
+        grid.asSingleSelect().clear();
+        editExemplaire(new Exemplaire());
+    }
+    public void editExemplaire(Exemplaire exemplaire) {
+        if (exemplaire == null) {
+            closeEditor();
+        } else {
+            form.setExemplaire(exemplaire);
+            form.setVisible(true);
+            addClassName("editing");
+        }
+    }
     public void editOperationEffectuee(OperationEffectuee operationEffectuee) {
         if (operationEffectuee == null) {
             closeEditor();
