@@ -29,13 +29,15 @@ public class OperationEffectueeForm extends FormLayout {
     TextField finOperation = new TextField("Fin Opération");
 
     ComboBox<Exemplaire> exemplaire = new ComboBox<>("Exemplaire");
+
     Button save = new Button("Save");
     Button delete = new Button("Delete");
     Button close = new Button("Cancel");
     // Other fields omitted
     Binder<OperationEffectuee> binder = new BeanValidationBinder<>(OperationEffectuee.class); // To validate the form
-
-    public OperationEffectueeForm(List<Exemplaire> exemplaires) {
+    private ExemplaireService exemplaireService;  //  pour déclarer le service
+    public OperationEffectueeForm(List<Exemplaire> exemplaires,ExemplaireService exemplaireService) {
+        this.exemplaireService = exemplaireService;  // Initialisation du service dans le constructeur
         exemplaire.setItems(exemplaires);
         exemplaire.setItemLabelGenerator(exemplaire -> {
             // Retournez la représentation textuelle de l'exemplaire dans le ComboBox
@@ -44,10 +46,10 @@ public class OperationEffectueeForm extends FormLayout {
         add(exemplaire, createButtonsLayout()); // Ajoutez le ComboBox dans le formulaire
 
     }
+
     public void setExemplaireId(Integer exemplaireId) {
-        // Utilisez la méthode requireOne de ExemplaireService pour obtenir un objet Exemplaire
         Exemplaire exemplaire = exemplaireService.requireOne(exemplaireId);
-        form.setExemplaire(exemplaire);
+        this.exemplaire.setValue(exemplaire);
     }
     private Component createButtonsLayout() {
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
@@ -64,9 +66,8 @@ public class OperationEffectueeForm extends FormLayout {
         binder.addStatusChangeListener(e -> save.setEnabled(binder.isValid()));
         return new HorizontalLayout(save, delete, close);
     }
-    public void setExemplaire(Exemplaire exemplaire) {
-        binder.setBean(exemplaire);
-    }
+
+
  //   private void validateAndSave() {
   //      if (binder.isValid()) {
    //         fireEvent(new OperationEffectueeForm.SaveEvent(this, binder.getBean()));

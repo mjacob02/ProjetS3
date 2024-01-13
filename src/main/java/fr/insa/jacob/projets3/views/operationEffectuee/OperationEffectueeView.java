@@ -59,7 +59,7 @@ public class OperationEffectueeView extends VerticalLayout {
     }
 
     private void configureForm() {
-        form = new OperationEffectueeForm(exemplaireService.listAll()); // Instanciate the form with the list of gamme
+        form = new OperationEffectueeForm(exemplaireService.listAll(), exemplaireService); // Instanciate the form with the list of gamme
         form.setWidth("25em");
         // Listen to the events fired by the form and handle them in this class :
         form.addSaveListener(this::saveOperationEffectuee);
