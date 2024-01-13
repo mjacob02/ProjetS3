@@ -19,7 +19,7 @@ public class ExemplaireService {
     public void delete(Exemplaire exemplaire) {
         exemplaireRepository.delete(exemplaire);
     }
-    private Exemplaire requireOne(Integer id) {
+    public Exemplaire requireOne(Integer id) {
         return exemplaireRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Resource not found: " + id));
     }

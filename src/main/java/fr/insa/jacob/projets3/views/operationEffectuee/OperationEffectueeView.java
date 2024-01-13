@@ -116,7 +116,7 @@ public class OperationEffectueeView extends VerticalLayout {
         if (exemplaire == null) {
             closeEditor();
         } else {
-            form.setExemplaire(exemplaire);
+            form.setExemplaireId(exemplaire.getId());
             form.setVisible(true);
             addClassName("editing");
         }

@@ -14,18 +14,21 @@ import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.shared.Registration;
 import fr.insa.jacob.projets3.entity.*;
+import fr.insa.jacob.projets3.services.ExemplaireService;
 import fr.insa.jacob.projets3.views.exemplaire.ExemplaireForm;
+import fr.insa.jacob.projets3.entity.Exemplaire;
+
 
 import java.util.List;
 
 public class OperationEffectueeForm extends FormLayout {
-    TextField exemplaire = new TextField("Exemplaire");
+//    TextField exemplaire = new TextField("Exemplaire");
     TextField operation = new TextField("Opération");
     TextField machine = new TextField("Machine");
     TextField debutOperation = new TextField("Début Opération");
     TextField finOperation = new TextField("Fin Opération");
 
-
+    ComboBox<Exemplaire> exemplaire = new ComboBox<>("Exemplaire");
     Button save = new Button("Save");
     Button delete = new Button("Delete");
     Button close = new Button("Cancel");
@@ -33,6 +36,18 @@ public class OperationEffectueeForm extends FormLayout {
     Binder<OperationEffectuee> binder = new BeanValidationBinder<>(OperationEffectuee.class); // To validate the form
 
     public OperationEffectueeForm(List<Exemplaire> exemplaires) {
+        exemplaire.setItems(exemplaires);
+        exemplaire.setItemLabelGenerator(exemplaire -> {
+            // Retournez la représentation textuelle de l'exemplaire dans le ComboBox
+            return exemplaire != null ? exemplaire.getNumeroDeSerie().toString() : "";
+        });
+        add(exemplaire, createButtonsLayout()); // Ajoutez le ComboBox dans le formulaire
+
+    }
+    public void setExemplaireId(Integer exemplaireId) {
+        // Utilisez la méthode requireOne de ExemplaireService pour obtenir un objet Exemplaire
+        Exemplaire exemplaire = exemplaireService.requireOne(exemplaireId);
+        form.setExemplaire(exemplaire);
     }
     private Component createButtonsLayout() {
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
@@ -49,13 +64,21 @@ public class OperationEffectueeForm extends FormLayout {
         binder.addStatusChangeListener(e -> save.setEnabled(binder.isValid()));
         return new HorizontalLayout(save, delete, close);
     }
-
-    private void validateAndSave() {
-        if (binder.isValid()) {
-            fireEvent(new OperationEffectueeForm.SaveEvent(this, binder.getBean()));
-        }
+    public void setExemplaire(Exemplaire exemplaire) {
+        binder.setBean(exemplaire);
     }
-
+ //   private void validateAndSave() {
+  //      if (binder.isValid()) {
+   //         fireEvent(new OperationEffectueeForm.SaveEvent(this, binder.getBean()));
+   //     }
+  //  }
+ private void validateAndSave() {
+     if (binder.isValid()) {
+         OperationEffectuee operationEffectuee = binder.getBean();
+         operationEffectuee.setExemplaire(exemplaire.getValue());
+         fireEvent(new SaveEvent(this, operationEffectuee));
+     }
+ }
     public void setOperationEffectuee(OperationEffectuee operationEffectuee) {
         binder.setBean(operationEffectuee);    // To fill the form with the data of the selected entity
     }
