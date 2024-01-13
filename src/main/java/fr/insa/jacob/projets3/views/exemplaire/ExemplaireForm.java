@@ -18,6 +18,7 @@ import fr.insa.jacob.projets3.entity.Gamme;
 import fr.insa.jacob.projets3.entity.Exemplaire;
 import fr.insa.jacob.projets3.entity.Produit;
 import fr.insa.jacob.projets3.views.exemplaire.ExemplaireForm;
+import fr.insa.jacob.projets3.views.operationEffectuee.OperationEffectueeView;
 
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class ExemplaireForm extends FormLayout {
     Button close = new Button("Cancel");
     // Other fields omitted
     Binder<Exemplaire> binder = new BeanValidationBinder<>(Exemplaire.class); // To validate the form
+    Button operationEffectueeButton = new Button("Opérations effectuées");
 
     public ExemplaireForm(List<Produit> produits) {
         addClassName("exemplaire-form"); // Pour styliser le formulaire avec CSS
@@ -38,8 +40,19 @@ public class ExemplaireForm extends FormLayout {
         produit.setItems(produits);
         produit.setItemLabelGenerator(Produit::getReference); // Pour afficher le nom du produit dans la liste déroulante
 
-        add(produit, numeroDeSerie, createButtonsLayout()); // Ajouter les composants au formulaire
+        add(produit, numeroDeSerie,operationEffectueeButton,createButtonsLayout()); // Ajouter les composants au formulaire
+        // Ajoutez un gestionnaire de clic pour le bouton "Opérations effectuées"
+        operationEffectueeButton.addClickListener(event -> showOperationEffectueeForExemplaire());
     }
+    private void showOperationEffectueeForExemplaire() {
+        // Récupérez l'exemplaire actuel
+        Exemplaire exemplaire = binder.getBean();
+        Integer exemplaireId = exemplaire.getId();
+
+        // Naviguez vers l'interface détaillée des opérations effectuées pour cet exemplaire
+        getUI().ifPresent(ui -> ui.navigate(OperationEffectueeView.class));
+    }
+
 
 
 
