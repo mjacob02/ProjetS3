@@ -13,7 +13,6 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.shared.Registration;
-import fr.insa.jacob.projets3.entity.Gamme;
 import fr.insa.jacob.projets3.entity.Machine;
 import fr.insa.jacob.projets3.entity.EtatMachine;
 
@@ -25,7 +24,7 @@ public class MachineForm extends FormLayout {
     TextField description = new TextField("Description");
     TextField puissance = new TextField("Puissance");
     TextField coutHoraire = new TextField("Coût Horaire");
-    ComboBox<EtatMachine> etatMachineComboBox = new ComboBox<>("EtatMachine");
+    ComboBox<EtatMachine> etatMachine = new ComboBox<>("EtatMachine");
     Button save = new Button("Save");
     Button delete = new Button("Delete");
     Button close = new Button("Cancel");
@@ -36,14 +35,14 @@ public class MachineForm extends FormLayout {
         addClassName("machine-form");
         // Lier la liste des états de machine à la ComboBox
         binder.bindInstanceFields(this);
-        etatMachineComboBox.setItems(etatMachines);
-        etatMachineComboBox.setItemLabelGenerator(EtatMachine::getNom); // Utilisation de la description comme libellé dans la ComboBox
+        etatMachine.setItems(etatMachines);
+        etatMachine.setItemLabelGenerator(EtatMachine::getNom); // Utilisation de la description comme libellé dans la ComboBox
         add(
                 reference,
                 description,
                 puissance,
                 coutHoraire,
-                etatMachineComboBox,
+                etatMachine,
                 createButtonsLayout()
         );
 
