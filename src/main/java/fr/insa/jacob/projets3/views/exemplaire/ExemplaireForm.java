@@ -39,7 +39,7 @@ public class ExemplaireForm extends FormLayout {
         produit.setItems(produits);
         produit.setItemLabelGenerator(Produit::getReference); // Pour afficher le nom du produit dans la liste déroulante
 
-        add(produit, numeroDeSerie,createButtonsLayout()); // Ajouter les composants au formulaire
+        add( numeroDeSerie,produit,createButtonsLayout()); // Ajouter les composants au formulaire
         // Ajoutez un gestionnaire de clic pour le bouton "Opérations effectuées"
       //  operationEffectueeButton.addClickListener(event -> showOperationEffectueeForExemplaire());
     }

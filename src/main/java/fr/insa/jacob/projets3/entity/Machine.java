@@ -21,8 +21,8 @@ public class Machine implements Serializable {
     @JoinColumn(name = "idEtatMachine")
     private EtatMachine etatMachine;
 
-    @Column(name = "idPosteDeTravail", nullable = false)
-    private Integer idPosteDeTravail;
+    //@Column(name = "idPosteDeTravail", nullable = false)
+  //  private Integer idPosteDeTravail;
 
     @Column(name = "Reference", nullable = false)
     private String reference;
@@ -51,9 +51,9 @@ public class Machine implements Serializable {
         return id;
     }
 
-    public Integer getIdPosteDeTravail() {
-        return idPosteDeTravail;
-    }
+  //  public Integer getIdPosteDeTravail() {
+  //      return idPosteDeTravail;
+  //  }
 
 
 
@@ -76,9 +76,9 @@ public class Machine implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-    public void setIdPosteDeTravail(Integer idPosteDeTravail) {
-        this.idPosteDeTravail = idPosteDeTravail;
-    }
+   // public void setIdPosteDeTravail(Integer idPosteDeTravail) {
+    //    this.idPosteDeTravail = idPosteDeTravail;
+ //   }
 
 
     public void setReference(String reference) {
@@ -96,7 +96,6 @@ public class Machine implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-
 
 
 }
