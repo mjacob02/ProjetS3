@@ -22,21 +22,21 @@ import fr.insa.jacob.projets3.entity.Exemplaire;
 import java.util.List;
 
 public class OperationEffectueeForm extends FormLayout {
-//    TextField exemplaire = new TextField("Exemplaire");
+    TextField exemplaire = new TextField("Exemplaire");
     TextField operation = new TextField("Opération");
     TextField machine = new TextField("Machine");
     TextField debutOperation = new TextField("Début Opération");
     TextField finOperation = new TextField("Fin Opération");
 
-    ComboBox<Exemplaire> exemplaire = new ComboBox<>("Exemplaire");
+     //ComboBox<Exemplaire> exemplaire = new ComboBox<>("Exemplaire");
 
     Button save = new Button("Save");
     Button delete = new Button("Delete");
     Button close = new Button("Cancel");
     // Other fields omitted
     Binder<OperationEffectuee> binder = new BeanValidationBinder<>(OperationEffectuee.class); // To validate the form
-    private ExemplaireService exemplaireService;  //  pour déclarer le service
-    public OperationEffectueeForm(List<Exemplaire> exemplaires,ExemplaireService exemplaireService) {
+   //private ExemplaireService exemplaireService;  //  pour déclarer le service
+    public OperationEffectueeForm(List<Exemplaire> exemplaires)
         this.exemplaireService = exemplaireService;  // Initialisation du service dans le constructeur
         exemplaire.setItems(exemplaires);
         exemplaire.setItemLabelGenerator(exemplaire -> {
@@ -68,11 +68,11 @@ public class OperationEffectueeForm extends FormLayout {
     }
 
 
- //   private void validateAndSave() {
-  //      if (binder.isValid()) {
-   //         fireEvent(new OperationEffectueeForm.SaveEvent(this, binder.getBean()));
-   //     }
-  //  }
+    private void validateAndSave() {
+        if (binder.isValid()) {
+            fireEvent(new OperationEffectueeForm.SaveEvent(this, binder.getBean()));
+        }
+    }
  private void validateAndSave() {
      if (binder.isValid()) {
          OperationEffectuee operationEffectuee = binder.getBean();
