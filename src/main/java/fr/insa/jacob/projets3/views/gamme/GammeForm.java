@@ -32,6 +32,7 @@ public class GammeForm extends FormLayout {
 
     public GammeForm(List<Operation> operations) {
         addClassName("gamme-form"); // To style the form with CSS
+        binder.bindInstanceFields(this);
         this.operations.setItems(operations);
         this.operations.setItemLabelGenerator(Operation::getDescription);
        add(     reference,
