@@ -53,7 +53,7 @@ public class MainLayout extends AppLayout {
         SideNav nav = new SideNav();
 
         nav.addItem(new SideNavItem("Produit", ProduitView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
-        nav.addItem(new SideNavItem("Exemplaire", ExemplaireView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
+      //  nav.addItem(new SideNavItem("Exemplaire", ExemplaireView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
        // nav.addItem(new SideNavItem("Gamme", GammeView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
        // nav.addItem(new SideNavItem("Machine", MachineView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
        // nav.addItem(new SideNavItem("Operation", OperationView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
