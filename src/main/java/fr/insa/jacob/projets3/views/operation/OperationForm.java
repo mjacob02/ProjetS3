@@ -21,12 +21,12 @@ import java.util.List;
 
 public class OperationForm extends FormLayout {
     ComboBox<TypeOperation> typeOperation = new ComboBox<>("Type Opération");
-    TextField operation = new TextField("Référence");
+    TextField reference = new TextField("Référence");
     TextField description = new TextField("Description");
-    TextField operationAmont = new TextField("Opération Amont");
-    TextField operationAval = new TextField("Opération Aval");
+    //TextField operationAmont = new TextField("Opération Amont");
+    //TextField operationAval = new TextField("Opération Aval");
 
-    MultiSelectComboBox<Operation> operations = new MultiSelectComboBox<>("Opérations");
+    MultiSelectComboBox<Operation> operationsAval = new MultiSelectComboBox<>("Opérations nécessaires");
 
 // TODO rajouter une multicombobox pour renseigner les operations amont
 
@@ -38,12 +38,20 @@ public class OperationForm extends FormLayout {
     Binder<Operation> binder = new BeanValidationBinder<>(Operation.class); // To validate the form
 
 
-    public OperationForm(List<Operation> operations) { // Constructeur de OperationForm
+    public OperationForm(List<Operation> operations, List<TypeOperation> typeOperations ) { // Constructeur de OperationForm
         addClassName("operation-form"); // To style the form with CSS
-        this.operations.setItems(operations);
-        this.operations.setItemLabelGenerator(Operation::getDescription);
-        add(    description,
-                this.operations,
+        binder.bindInstanceFields(this);  // To bind the fields of the form to the fields of the entity
+        // paramétage de operation aval
+        this.operationsAval.setItems(operations);
+        this.operationsAval.setItemLabelGenerator(Operation::getDescription);
+        // paramétrage de type operation
+        this.typeOperation.setItems(typeOperations);
+        this.typeOperation.setItemLabelGenerator(TypeOperation::getDescription);
+
+        add(    typeOperation,
+                description,
+                reference,
+                this.operationsAval,
                 createButtonsLayout()); // To display the fields in the form
 
     }

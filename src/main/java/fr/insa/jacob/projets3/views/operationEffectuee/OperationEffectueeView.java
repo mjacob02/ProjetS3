@@ -79,15 +79,23 @@ public class OperationEffectueeView extends VerticalLayout {
         closeEditor();
     }
 
+
+
     private void configureGrid() {
         grid.addClassNames("OperationEffectuee-grid");
         grid.setSizeFull();
-        grid.setColumns("exemplaire", "operation","machine","debutOperation", "finOperation"); // Add columns to the grid
-//        grid.addColumn(produit -> produit.getGamme().getReference()).setHeader("Gamme");    // If not null, add a column with the gamme reference
-        grid.addColumn(exemplaire -> exemplaire.getReference() != null ? exemplaire.getReference().getNumeroDeSerie() : "").setHeader("Reference");  // Add a column with the gamme reference (that can be null)
-        //grid.addColumn(operation -> operation.getDescription() != null ? operation.getDescription() : "").setHeader("Description");  // Add a column with the gamme reference (that can be null)
-        grid.addColumn(machine -> machine.getReference() != null ? machine.getReference().getDescription() : "").setHeader("Reference");  // Add a column with the gamme reference (that can be null)
-        grid.getColumns().forEach(col -> col.setAutoWidth(true));
+        grid.setColumns("debutOperation", "finOperation"); // Add columns to the grid
+
+        // Define column operation
+        grid.addColumn(operationEffectuee -> operationEffectuee.getOperation() != null ? operationEffectuee.getOperation().getReference() : "").setHeader("Opération");
+
+        // Define column exemplaire
+        grid.addColumn(operationEffectuee -> operationE
+
+                // le faire pour machine
+
+
+                grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
         grid.asSingleSelect().addValueChangeListener(event ->
                 editOperationEffectuee(event.getValue()));
