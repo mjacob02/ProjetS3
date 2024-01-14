@@ -18,8 +18,9 @@ public class Operation implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "idTypeOperation", nullable = false)
-    private Integer idTypeOperation;
+    @ManyToOne
+    @JoinColumn(name = "idTypeOperation")
+    private TypeOperation typeOperation;
 
     @Column(name = "Reference", nullable = false)
     private String reference;
@@ -41,16 +42,18 @@ public class Operation implements Serializable {
         return id;
     }
 
-    public Integer getIdTypeOperation() {
-        return idTypeOperation;
-    }
+
 
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public void setIdTypeOperation(Integer idTypeOperation) {
-        this.idTypeOperation = idTypeOperation;
+    public TypeOperation getTypeOperation() {
+        return typeOperation;
+    }
+
+    public void setTypeOperation(TypeOperation typeOperation) {
+        this.typeOperation = typeOperation;
     }
 
     public String getReference() {
@@ -67,4 +70,19 @@ public class Operation implements Serializable {
         this.description = description;
     }
 
+    public Set<Gamme> getGammes() {
+        return gammes;
+    }
+
+    public void setGammes(Set<Gamme> gammes) {
+        this.gammes = gammes;
+    }
+
+    public Set<Operation> getOperationsAval() {
+        return operationsAval;
+    }
+
+    public void setOperationsAval(Set<Operation> operationsAval) {
+        this.operationsAval = operationsAval;
+    }
 }
