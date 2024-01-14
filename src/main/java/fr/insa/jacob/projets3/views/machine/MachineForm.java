@@ -35,6 +35,7 @@ public class MachineForm extends FormLayout {
     public MachineForm(List<EtatMachine> etatMachines) {
         addClassName("machine-form");
         // Lier la liste des états de machine à la ComboBox
+        binder.bindInstanceFields(this);
         etatMachineComboBox.setItems(etatMachines);
         etatMachineComboBox.setItemLabelGenerator(EtatMachine::getNom); // Utilisation de la description comme libellé dans la ComboBox
         add(
