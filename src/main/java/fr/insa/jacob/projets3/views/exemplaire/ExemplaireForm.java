@@ -18,7 +18,6 @@ import fr.insa.jacob.projets3.entity.Gamme;
 import fr.insa.jacob.projets3.entity.Exemplaire;
 import fr.insa.jacob.projets3.entity.Produit;
 import fr.insa.jacob.projets3.views.exemplaire.ExemplaireForm;
-import fr.insa.jacob.projets3.views.operationEffectuee.OperationEffectueeView;
 
 import java.util.List;
 
@@ -51,7 +50,7 @@ public class ExemplaireForm extends FormLayout {
 
         // Naviguez vers l'interface détaillée des opérations effectuées pour cet exemplaire
        // getUI().ifPresent(ui -> ui.navigate(OperationEffectueeView.class));
-    }
+
 
 
 
