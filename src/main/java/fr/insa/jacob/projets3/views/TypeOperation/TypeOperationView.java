@@ -20,7 +20,7 @@ import jakarta.annotation.security.PermitAll;
 import org.springframework.context.annotation.Scope;
 
 @SpringComponent
-@Scope("TypeOperation")
+@Scope("prototype")
 @PermitAll
 @Route(value = "TypeOperation", layout = MainLayout.class)
 @PageTitle("TypeOperation | Vaadin CRM")
@@ -30,7 +30,7 @@ public class TypeOperationView extends VerticalLayout {
     TypeOperationForm form;
     TypeOperationService typeOperationService;
 
-    public TypeOperationView(TypeOperationService service) {
+    public TypeOperationView(TypeOperationService typeOperationService) {
         this.typeOperationService = typeOperationService;
 
 
@@ -79,7 +79,7 @@ public class TypeOperationView extends VerticalLayout {
         grid.addClassNames("TypeOperation-grid");
         grid.setSizeFull();
         //grid.addColumn(exemplaire -> exemplaire.getProduit() != null ? exemplaire.getProduit().getReference() : "").setHeader("Reference");
-        grid.setColumns("Description"); // Add columns to the grid
+        grid.setColumns("description"); // Add columns to the grid
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
         grid.asSingleSelect().addValueChangeListener(event ->
@@ -96,7 +96,7 @@ public class TypeOperationView extends VerticalLayout {
         addTypeOperationButton.addClickListener(click -> addTypeOperation());
 
 
-        var toolbar = new HorizontalLayout(filterText);
+        var toolbar = new HorizontalLayout(filterText, addTypeOperationButton);
         toolbar.addClassName("toolbar");
         return toolbar;
     }

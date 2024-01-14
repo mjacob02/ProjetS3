@@ -31,10 +31,10 @@ public class ExemplaireView extends VerticalLayout {
     ExemplaireService exemplaireService;
     ProduitService produitService;
 
-    public ExemplaireView(ExemplaireService service, ProduitService produitService, ExemplaireService exemplaireService) {
+    public ExemplaireView(ExemplaireService service, ProduitService produitService) {
         this.exemplaireService = service;
         this.produitService = produitService;
-        this.exemplaireService = exemplaireService;
+
 
         addClassName("list-view");
         setSizeFull();
@@ -56,7 +56,7 @@ public class ExemplaireView extends VerticalLayout {
     }
 
     private void configureForm() {
-        form = new ExemplaireForm(exemplaireService.listAll()); // Instanciate the form with the list of gamme
+        form = new ExemplaireForm(produitService.listAll()); // Instanciate the form with the list of gamme
         form.setWidth("25em");
         // Listen to the events fired by the form and handle them in this class :
         form.addSaveListener(this::saveExemplaire);
@@ -97,7 +97,7 @@ public class ExemplaireView extends VerticalLayout {
         addExemplaireButton.addClickListener(click -> addExemplaire());
 
 
-        var toolbar = new HorizontalLayout(filterText);
+        var toolbar = new HorizontalLayout(filterText, addExemplaireButton);
         toolbar.addClassName("toolbar");
         return toolbar;
     }
