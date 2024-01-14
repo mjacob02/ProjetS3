@@ -47,8 +47,6 @@ public class Gamme implements Serializable {
     }
 
 
-// TODO : handle many-tomany : https://www.baeldung.com/jpa-many-to-many
-//    public Gamme getGammeOperation() {
 @ManyToMany
 @JoinTable(
         name = "Gamme_Operation",

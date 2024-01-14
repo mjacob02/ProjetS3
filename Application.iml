@@ -3,12 +3,6 @@
   <component name="AdditionalModuleElements">
     <content url="file://$MODULE_DIR$" dumb="true">
       <excludeFolder url="file://$MODULE_DIR$/src/main/java/fr/insa/jacob/projets3/views/gammeOperation" />
-      <excludeFolder url="file://$MODULE_DIR$/src/main/java/fr/insa/jacob/projets3/views/list" />
-      <excludeFolder url="file://$MODULE_DIR$/src/main/java/fr/insa/jacob/projets3/views/TypeOperation" />
-      <excludeFolder url="file://$MODULE_DIR$/src/main/java/fr/insa/jacob/projets3/views/gamme" />
-      <excludeFolder url="file://$MODULE_DIR$/src/main/java/fr/insa/jacob/projets3/views/operation" />
-      <excludeFolder url="file://$MODULE_DIR$/src/main/java/fr/insa/jacob/projets3/views/exemplaire" />
-      <excludeFolder url="file://$MODULE_DIR$/src/main/java/fr/insa/jacob/projets3/views/machine" />
       <excludeFolder url="file://$MODULE_DIR$/src/main/java/fr/insa/jacob/projets3/views/operationEffectuee" />
     </content>
   </component>

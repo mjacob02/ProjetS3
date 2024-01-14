@@ -1,7 +1,10 @@
 package fr.insa.jacob.projets3.views;
 
+import fr.insa.jacob.projets3.views.TypeOperation.TypeOperationView;
 import fr.insa.jacob.projets3.views.exemplaire.ExemplaireView;
+import fr.insa.jacob.projets3.views.gamme.GammeView;
 import fr.insa.jacob.projets3.views.machine.MachineView;
+import fr.insa.jacob.projets3.views.operation.OperationView;
 import fr.insa.jacob.projets3.views.produit.ProduitView;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -53,11 +56,11 @@ public class MainLayout extends AppLayout {
         SideNav nav = new SideNav();
 
         nav.addItem(new SideNavItem("Produit", ProduitView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
-      //  nav.addItem(new SideNavItem("Exemplaire", ExemplaireView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
-       // nav.addItem(new SideNavItem("Gamme", GammeView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
-       // nav.addItem(new SideNavItem("Machine", MachineView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
-       // nav.addItem(new SideNavItem("Operation", OperationView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
-       // nav.addItem(new SideNavItem("TypeOperation", TypeOperationView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
+        nav.addItem(new SideNavItem("Exemplaire", ExemplaireView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
+        nav.addItem(new SideNavItem("Gamme", GammeView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
+        nav.addItem(new SideNavItem("Machine", MachineView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
+        nav.addItem(new SideNavItem("Operation", OperationView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
+        nav.addItem(new SideNavItem("TypeOperation", TypeOperationView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
        // nav.addItem(new SideNavItem("OperationEffectuee", OperationEffectueeView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
 
 
