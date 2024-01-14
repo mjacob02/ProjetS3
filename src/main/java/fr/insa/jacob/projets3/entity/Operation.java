@@ -22,7 +22,7 @@ public class Operation implements Serializable {
     @JoinColumn(name = "idTypeOperation")
     private TypeOperation typeOperation;
 
-    @Column(name = "Reference", nullable = false)
+    @Column(name = "reference", nullable = false)
     private String reference;
 
     @Column(name = "description", nullable = false)

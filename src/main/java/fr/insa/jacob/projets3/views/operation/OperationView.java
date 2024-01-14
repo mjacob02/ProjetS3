@@ -57,7 +57,7 @@ public class OperationView extends VerticalLayout {
     }
 
     private void configureForm() {
-        form = new OperationForm(operationService.listAll()); // Instanciate the form with the list of typeOperation
+        form = new OperationForm(operationService.listAll(),typeOperationService.listAll()); // Instanciate the form with the list of typeOperation
         form.setWidth("25em");
         // Listen to the events fired by the form and handle them in this class :
         form.addSaveListener(this::saveOperation);
@@ -80,10 +80,9 @@ public class OperationView extends VerticalLayout {
     private void configureGrid() {
         grid.addClassNames("Operation-grid");
         grid.setSizeFull();
-        grid.setColumns("typeOperation", "operation","description","operationAmont","operationAval"); // Add columns to the grid
-//        grid.addColumn(produit -> produit.getGamme().getReference()).setHeader("Gamme");    // If not null, add a column with the gamme reference
-        grid.addColumn(operation -> operation.getDescription() != null ? operation.getDescription() : "").setHeader("Operation");  // Add a column with the gamme reference (that can be null)
-        grid.addColumn(typeOperation -> typeOperation.getDescription() != null ? typeOperation.getDescription() : "").setHeader("TypeOperation");  // Add a column with the gamme reference (that can be null)
+        grid.setColumns( "reference","description"); // Add columns to the grid
+        // definition de la colonne type operation
+        grid.addColumn(operation -> operation.getTypeOperation() != null ? operation.getTypeOperation().getDescription() : "").setHeader(" Type d'Operation");  // Add a column with the gamme reference (that can be null)
 
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
